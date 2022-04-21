@@ -255,17 +255,7 @@ function App() {
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
-          <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
-        <div className="pb-6 grow">
-          <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
-            </div></div>
-                    <div className="pb-6 grow">
-          <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
-            </div></div>
-        
-        </div>      
-       
-    
+        </div>
         <Keyboard
           onChar={onChar}
           onDelete={onDelete}
@@ -273,7 +263,6 @@ function App() {
           guesses={guesses}
           isRevealing={isRevealing}
         />
- 
         <InfoModal
           isOpen={isInfoModalOpen}
           handleClose={() => setIsInfoModalOpen(false)}
