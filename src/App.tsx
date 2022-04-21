@@ -272,7 +272,6 @@ function App() {
            <div className="pb-6 grow">
           <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
             </div></div>
-        </div>  
         <InfoModal
           isOpen={isInfoModalOpen}
           handleClose={() => setIsInfoModalOpen(false)}
