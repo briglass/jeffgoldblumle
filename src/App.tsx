@@ -255,7 +255,7 @@ function App() {
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
-          <div class="flex justify-center mb-1"><p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p></div>
+          <p className="text-m ml-2.5 font-bold dark:text-white"  style="text-align:right">90% of the time, the answer is Jeff Goldblum.</p>
         </div>        
         <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Buy me a coffee.</a></p>
         <Keyboard
