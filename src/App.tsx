@@ -256,6 +256,7 @@ function App() {
             currentRowClassName={currentRowClass}
           />
         </div>
+        <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Buy me a coffee.</a></p>
         <Keyboard
           onChar={onChar}
           onDelete={onDelete}
