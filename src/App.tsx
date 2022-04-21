@@ -259,6 +259,10 @@ function App() {
         <div className="pb-6 grow">
           <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
             </div></div>
+                    <div className="pb-6 grow">
+          <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
+            </div></div>
+        
         </div>      
        
     
@@ -269,9 +273,7 @@ function App() {
           guesses={guesses}
           isRevealing={isRevealing}
         />
-           <div className="pb-6 grow">
-          <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
-            </div></div>
+ 
         <InfoModal
           isOpen={isInfoModalOpen}
           handleClose={() => setIsInfoModalOpen(false)}
