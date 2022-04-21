@@ -261,7 +261,7 @@ function App() {
 
         </div> 
         
-        <div className="pb-6 grow">
+        <div className="pb-6 grow content-center">
           <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
           </div>
         
@@ -273,7 +273,7 @@ function App() {
           isRevealing={isRevealing}
         />
         
-            <div className="pb-6 grow">
+            <div className="pb-6 grow content-center">
           <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
           </div>
         
