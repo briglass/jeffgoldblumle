@@ -262,7 +262,7 @@ function App() {
         </div> 
         
         <div className="pb-6 grow justify-center">
-          <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
+          <p className="text-xs font-medium text-blue-100 text-center p-0.5">90% of the time, the answer is Jeff Goldblum.</p>
           </div>
         
         <Keyboard
