@@ -262,7 +262,7 @@ function App() {
         </div> 
         
         <div className="pb-6 grow justify-center">
-          <p className="text-xs font-medium text-blue-100 text-center p-0.5">90% of the time, the answer is Jeff Goldblum.</p>
+          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
           </div>
         
         <Keyboard
@@ -274,7 +274,7 @@ function App() {
         />
         
             <div className="pb-6 grow justify-center">
-          <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
+          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
           </div>
         
         <InfoModal
