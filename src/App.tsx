@@ -255,8 +255,8 @@ function App() {
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
-        </div>
-        <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Buy me a coffee.</a></p>
+        </div>        
+        <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a></p>
         <Keyboard
           onChar={onChar}
           onDelete={onDelete}
