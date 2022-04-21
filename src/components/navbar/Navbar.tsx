@@ -24,7 +24,7 @@ export const Navbar = ({
           onClick={() => setIsInfoModalOpen(true)}
         />
         <p className="text-xl ml-2.5 font-bold dark:text-white">{GAME_TITLE}</p>
-        <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">test</a></p>      
+        <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314"><img src="%PUBLIC_URL%/coffee.png"></a></p>
         <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum</p>
         
         <div className="right-icons">
