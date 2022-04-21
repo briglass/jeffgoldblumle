@@ -255,6 +255,7 @@ function App() {
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
+          <p className="text-m ml-2.5 font-bold dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
         </div>        
         <p className="text-m ml-2.5 font-bold dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Buy me a coffee.</a></p>
         <Keyboard
