@@ -68,14 +68,14 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solution && loaded?.solutionIndex !== solutionIndex) {
+    if (loaded?.solution !== solution || loaded?.solutionIndex !== solutionIndex) {
       return []
     }
-    const gameWasWon = loaded.guesses.includes(solution)
+    const gameWasWon = (loaded.guesses.includes(solution) && loaded?.solutionIndex == solutionIndex)
     if (gameWasWon) {
       setIsGameWon(true)
     }
-    if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
+    if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon && loaded?.solutionIndex == solutionIndex) {
       setIsGameLost(true)
       showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
         persist: true,
