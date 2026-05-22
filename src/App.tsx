@@ -77,14 +77,14 @@ function App() {
     }
     const gameWasWon =
       loaded.guesses.includes(solution) &&
-      loaded?.solutionIndex == solutionIndex
+      loaded?.solutionIndex === solutionIndex
     if (gameWasWon) {
       setIsGameWon(true)
     }
     if (
       loaded.guesses.length === MAX_CHALLENGES &&
       !gameWasWon &&
-      loaded?.solutionIndex == solutionIndex
+      loaded?.solutionIndex === solutionIndex
     ) {
       setIsGameLost(true)
       showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
