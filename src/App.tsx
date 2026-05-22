@@ -69,14 +69,23 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solution || loaded?.solutionIndex !== solutionIndex) {
+    if (
+      loaded?.solution !== solution ||
+      loaded?.solutionIndex !== solutionIndex
+    ) {
       return []
     }
-    const gameWasWon = (loaded.guesses.includes(solution) && loaded?.solutionIndex == solutionIndex)
+    const gameWasWon =
+      loaded.guesses.includes(solution) &&
+      loaded?.solutionIndex == solutionIndex
     if (gameWasWon) {
       setIsGameWon(true)
     }
-    if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon && loaded?.solutionIndex == solutionIndex) {
+    if (
+      loaded.guesses.length === MAX_CHALLENGES &&
+      !gameWasWon &&
+      loaded?.solutionIndex == solutionIndex
+    ) {
       setIsGameLost(true)
       showErrorAlert(CORRECT_WORD_MESSAGE(solution), {
         persist: true,
@@ -245,7 +254,6 @@ function App() {
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
-        
         <div className="pb-6 grow">
           <Grid
             guesses={guesses}
@@ -253,12 +261,14 @@ function App() {
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
-        </div> 
-        
-        <div className="pb-6 grow justify-center">
-          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
         </div>
-        
+
+        <div className="pb-6 grow justify-center">
+          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
+            90% of the time, the answer is Jeff Goldblum.
+          </p>
+        </div>
+
         <Keyboard
           onChar={onChar}
           onDelete={onDelete}
@@ -266,11 +276,15 @@ function App() {
           guesses={guesses}
           isRevealing={isRevealing}
         />
-        
+
         <div className="pb-6 grow justify-center">
-          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
+          <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
+            <a href="https://www.buymeacoffee.com/briglass314">
+              Click here to buy me a coffee.
+            </a>
+          </p>
         </div>
-        
+
         <InfoModal
           isOpen={isInfoModalOpen}
           handleClose={() => setIsInfoModalOpen(false)}

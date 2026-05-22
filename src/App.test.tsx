@@ -2,6 +2,11 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import App from './App'
 import { GAME_TITLE } from './constants/strings'
+import { Analytics } from '@vercel/analytics/react'
+
+jest.mock('@vercel/analytics/react', () => ({
+  Analytics: () => null,
+}))
 
 beforeEach(() => {
   Object.defineProperty(window, 'matchMedia', {
