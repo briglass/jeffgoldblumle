@@ -278,12 +278,37 @@ function App() {
           isRevealing={isRevealing}
         />
 
-        <div className="pb-6 grow justify-center">
+        <div className="pb-6 flex flex-col items-center justify-center space-y-4">
           <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
-            <a href="https://www.buymeacoffee.com/briglass314">
+            <a
+              href="https://www.buymeacoffee.com/briglass314"
+              className="underline"
+            >
               Click here to buy me a coffee.
             </a>
           </p>
+
+          <div className="flex flex-wrap justify-center gap-2 items-center">
+            <span className="text-sm font-medium dark:text-gray-300">
+              Featured by:
+            </span>
+            <a
+              href="https://www.instagram.com/reels/DYnVChDSerJ/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+            >
+              @samwitchx
+            </a>
+            <a
+              href="https://www.instagram.com/reels/DXh1skLBGu_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+            >
+              @swoop.douglas
+            </a>
+          </div>
         </div>
 
         <GoogleAd slot="YOUR_AD_SLOT_ID_HERE" format="horizontal" />
