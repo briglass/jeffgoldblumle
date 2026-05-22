@@ -22,7 +22,7 @@ export const shareStatus = (
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode)) +
-    `\nhttps://jeffgoldblumle.vercel.app/`
+    `\nhttps://jeffgoldblumle.com/`
 
   const shareData = { text: textToShare }
 
