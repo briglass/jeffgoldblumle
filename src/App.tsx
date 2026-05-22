@@ -4,6 +4,7 @@ import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
+import { Analytics } from '@vercel/analytics/react'
 import {
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
@@ -93,8 +94,6 @@ function App() {
   )
 
   useEffect(() => {
-    // if no game state on load,
-    // show the user the how-to info modal
     if (!loadGameStateFromLocalStorage()) {
       setTimeout(() => {
         setIsInfoModalOpen(true)
@@ -197,7 +196,6 @@ function App() {
       })
     }
 
-    // enforce hard mode - all guesses must contain all previously revealed letters
     if (isHardMode) {
       const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
       if (firstMissingReveal) {
@@ -209,8 +207,6 @@ function App() {
     }
 
     setIsRevealing(true)
-    // turn this back off after all
-    // chars have been revealed
     setTimeout(() => {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
@@ -249,22 +245,19 @@ function App() {
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
-      
         
         <div className="pb-6 grow">
-          
           <Grid
             guesses={guesses}
             currentGuess={currentGuess}
             isRevealing={isRevealing}
             currentRowClassName={currentRowClass}
           />
-
         </div> 
         
         <div className="pb-6 grow justify-center">
           <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">90% of the time, the answer is Jeff Goldblum.</p>
-          </div>
+        </div>
         
         <Keyboard
           onChar={onChar}
@@ -274,9 +267,9 @@ function App() {
           isRevealing={isRevealing}
         />
         
-            <div className="pb-6 grow justify-center">
+        <div className="pb-6 grow justify-center">
           <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white"><a href="https://www.buymeacoffee.com/briglass314">Click here to buy me a coffee.</a></p>
-          </div>
+        </div>
         
         <InfoModal
           isOpen={isInfoModalOpen}
@@ -306,6 +299,7 @@ function App() {
           handleHighContrastMode={handleHighContrastMode}
         />
         <AlertContainer />
+        <Analytics />
       </div>
     </div>
   )
