@@ -36,6 +36,7 @@ import {
   getStoredIsHighContrastMode,
 } from './lib/localStorage'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
+import { GoogleAd } from './components/ads/GoogleAd'
 
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
@@ -284,6 +285,8 @@ function App() {
             </a>
           </p>
         </div>
+
+        <GoogleAd slot="YOUR_AD_SLOT_ID_HERE" format="horizontal" />
 
         <InfoModal
           isOpen={isInfoModalOpen}
