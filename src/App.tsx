@@ -308,6 +308,14 @@ function App() {
             >
               @swoop.douglas
             </a>
+            <a
+              href="https://www.youtube.com/shorts/wTM0BKI_B2s"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+            >
+              @Briank_fromtiktok
+            </a>
           </div>
         </div>
 
