@@ -317,6 +317,15 @@ function App() {
                 @Briank_fromtiktok
               </a>
             </div>
+
+            <a
+              href="https://omg10.com/4/11121017"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-gradient-to-tr from-emerald-400 via-teal-500 to-cyan-600 text-white text-sm font-bold rounded shadow hover:opacity-90 transition-opacity"
+            >
+              Check out our sponsor
+            </a>
           </div>
         </div>
 
