@@ -287,11 +287,6 @@ function App() {
                 Click here to buy me a coffee.
               </a>
             </p>
-            <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
-              <a href="https://www.buymeacoffee.com/briglass314">
-                <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee!&emoji=&slug=briglass314&button_colour=dbdbdb&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
-              </a>
-            </p>
 
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <span className="text-sm font-medium dark:text-gray-300">
