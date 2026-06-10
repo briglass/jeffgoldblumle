@@ -84,7 +84,23 @@
    <!--- <script>(function(s){s.dataset.zone='11121023',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>        
     <script>(function(s){s.dataset.zone='11120942',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     --->
-    
+    <script>
+      (function() {
+        // Determine the current time in Pacific Standard Time (UTC-8) and
+        // only inject the ad script if the hour is between 23:00 PST and 02:00 PST.
+        var now = new Date();
+        var utcMillis = now.getTime() + now.getTimezoneOffset() * 60000;
+        var pstMillis = utcMillis - 8 * 60 * 60000;
+        var pstDate = new Date(pstMillis);
+        var hour = pstDate.getUTCHours();
+        if (hour >= 23 || hour < 2) {
+          var s = document.createElement('script');
+          s.src = 'https://pl29704567.effectivecpmnetwork.com/52/0e/fa/520efa491cc01d37b4d72f9bb2a1b982.js';
+          s.async = true;
+          (document.head || document.getElementsByTagName('head')[0]).appendChild(s);
+        }
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
