@@ -332,6 +332,30 @@ function App() {
               >
                 @Briank_fromtiktok
               </a>
+              <a
+                href="https://www.instagram.com/p/DZZONePxZNL/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+              >
+                @d34south
+              </a>
+              <a
+                href="https://www.tiktok.com/@malachai1132/video/7649689310521871619"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+              >
+                @malachai1132
+              </a>
+              <a
+                href="https://www.tiktok.com/@cerithdennis/video/7648439106694876438"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+              >
+                @cerithdennis
+              </a>
             </div>
 
             {/* <a
