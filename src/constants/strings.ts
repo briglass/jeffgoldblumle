@@ -3,12 +3,24 @@ export const GAME_TITLE = process.env.REACT_APP_GAME_NAME!
 export const WIN_MESSAGES = [
   'Life finds a way.',
   'Nice To Meet You, Mr. Dude.',
-  'God Creates Dinosaurs',
+  'God creates dinosaurs, God destroys dinosaurs, God creates man, man destroys God, man creates dinosaurs',
   'Did He Just Throw My Cat Out Of The Window?',
   'Must Go Faster',
   'Help Me. Help Me Be Human',
   'He Wasnt The President Yet',
   'What Am I Working On?',
+  'Checkmate.',
+  'I am a scientist.',
+  'Be afraid. Be very afraid',
+  'Time travels in both directions',
+  'How do you do, fellow primates?',
+  'It`s a tie.',
+  'I am becoming something that has never existed before',
+  'History is happening now, and we are part of it',
+  'I don`t think I`m constructed for this',
+  'Revolution? Where is the Revolution? I don`t see any Revolution',
+  'You`re a wizard, Harry... wait, wrong movie',
+  'Yeah, but your scientists were so preoccupied with whether or not they could, they didn`t stop to think if they should'
 ]
 export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
 export const NOT_ENOUGH_LETTERS_MESSAGE = 'Not enough letters'
