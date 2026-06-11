@@ -41,6 +41,8 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
+import { AdsterraBanner } from './components/ads/AdsterraBanner'
+import { AdsterraNative } from './components/ads/AdsterraNative'
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -247,12 +249,13 @@ function App() {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Navbar
         setIsInfoModalOpen={setIsInfoModalOpen}
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
+      <AdsterraBanner />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-center">
           <div className="pb-6 flex flex-col justify-center">
@@ -368,6 +371,7 @@ function App() {
             </a> */}
           </div>
         </div>
+        <AdsterraNative />
 
         <InfoModal
           isOpen={isInfoModalOpen}
