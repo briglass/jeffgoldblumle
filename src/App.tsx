@@ -281,9 +281,7 @@ function App() {
             isRevealing={isRevealing}
           />
 
-          <AdsterraNative />
-
-          <div className="pt-8 pb-6 flex flex-col items-center justify-center space-y-4">
+          <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
             <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
               <a
                 href="https://www.buymeacoffee.com/briglass314"
@@ -372,6 +370,8 @@ function App() {
               Check out our sponsor
             </a> */}
           </div>
+
+          <AdsterraNative />
         </div>
 
         <InfoModal
