@@ -36,7 +36,6 @@ import {
   getStoredIsHighContrastMode,
 } from './lib/localStorage'
 import { default as GraphemeSplitter } from 'grapheme-splitter'
-
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { Alert } from './components/alerts/Alert'
@@ -47,6 +46,18 @@ function App() {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches
+
+  const [view, setView] = useState<'game' | 'association'>(() => {
+    return window.location.hash === '#association' ? 'association' : 'game'
+  })
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setView(window.location.hash === '#association' ? 'association' : 'game')
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   const {
     showError: showErrorAlert,
@@ -327,6 +338,13 @@ function App() {
                 Offical Twxttxr Account
               </a>
             </div>
+
+            <a
+              href="/association.html"
+              className="text-xs font-semibold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 underline transition-colors pt-1"
+            >
+              Is this page associated with Jeff Goldblum?
+            </a>
 
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <span className="text-sm font-medium dark:text-gray-300">
