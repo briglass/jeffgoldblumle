@@ -47,18 +47,6 @@ function App() {
     '(prefers-color-scheme: dark)'
   ).matches
 
-  const [view, setView] = useState<'game' | 'association'>(() => {
-    return window.location.hash === '#association' ? 'association' : 'game'
-  })
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setView(window.location.hash === '#association' ? 'association' : 'game')
-    }
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
-
   const {
     showError: showErrorAlert,
     showSuccess: showSuccessAlert,
@@ -66,6 +54,7 @@ function App() {
     message,
     isVisible,
   } = useAlert()
+
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
