@@ -90,19 +90,21 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <!--- Hilltop Banner which apparently is not CPA -->
-    <script>
-      (function(qsds){
-      var d = document,
-          s = d.createElement('script'),
-          l = d.scripts[d.scripts.length - 1];
-      s.settings = qsds || {};
-      s.src = "\/\/profitable-grocery.com\/b\/XGVls.dfGil\/0qY\/WicX\/cePmF9rutZHUjlpkuPUTCc\/x\/MqzBM\/zbMQTeMstCN\/zfE\/zRMbzaM\/x\/NDwj";
-      s.async = true;
-      s.referrerPolicy = 'no-referrer-when-downgrade';
-      l.parentNode.insertBefore(s, l);
-      })({})
-    </script>
+    <!--- Hilltop Banner which apparently is not CPA, and is mobile only-->
+    <div style="display: flex; justify-content: center; align-items: center; margin: 16px 0; width: 100%;">
+      <script>
+        (function(qsds){
+        var d = document,
+            s = d.createElement('script'),
+            l = d.scripts[d.scripts.length - 1];
+        s.settings = qsds || {};
+        s.src = "\/\/profitable-grocery.com\/b\/XGVls.dfGil\/0qY\/WicX\/cePmF9rutZHUjlpkuPUTCc\/x\/MqzBM\/zbMQTeMstCN\/zfE\/zRMbzaM\/x\/NDwj";
+        s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
+        l.parentNode.insertBefore(s, l);
+        })({})
+      </script>
+    </div>
 
     <!-- Adsterra Banner 320x50 (Loaded statically right above game header) Commented out because it's CPA
     <div style="display: flex; justify-content: center; align-items: center; margin: 16px 0; min-height: 50px; width: 100%;">

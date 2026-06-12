@@ -39,6 +39,7 @@ import { default as GraphemeSplitter } from 'grapheme-splitter'
 
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
+import { Alert } from './components/alerts/Alert'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 
@@ -47,8 +48,13 @@ function App() {
     '(prefers-color-scheme: dark)'
   ).matches
 
-  const { showError: showErrorAlert, showSuccess: showSuccessAlert } =
-    useAlert()
+  const {
+    showError: showErrorAlert,
+    showSuccess: showSuccessAlert,
+    status,
+    message,
+    isVisible,
+  } = useAlert()
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
@@ -255,6 +261,15 @@ function App() {
       />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-center">
+          <div className="mb-4">
+            <Alert
+              isOpen={isVisible && status === 'success'}
+              message={message || ''}
+              variant="success"
+              inline={true}
+            />
+          </div>
+
           <div className="pb-6 flex flex-col justify-center">
             <Grid
               guesses={guesses}
@@ -279,30 +294,39 @@ function App() {
           />
 
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
-            <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
+            <div className="flex flex-wrap justify-center gap-3 items-center">
               <a
                 href="https://www.buymeacoffee.com/briglass314"
-                className="underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-3 py-1.5 bg-gradient-to-r from-amber-700 via-amber-800 to-yellow-900 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
               >
-                Click here to buy me a coffee.
+                <svg
+                  className="w-4 h-4 fill-current mr-1.5"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M20.216 6.415l-.132-.013c-.347-.008-.636-.283-.642-.63l-.012-.952c-.006-.411-.329-.715-.71-.715H3.666c-.38 0-.703.304-.71.715l-.012.952c-.006.347-.295.622-.642.63l-.132.013c-1.144.112-1.921 1.115-1.921 2.274v1.5c0 1.95 1.545 3.528 3.486 3.568l.012.952c.006.347.295.622.642.63l.132.013c.895.088 1.58.749 1.58 1.654v.373c0 .825-.66 1.488-1.485 1.488h-.3c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5h14c.825 0 1.5-.675 1.5-1.5s-.675-1.5-1.5-1.5h-.3c-.825 0-1.485-.663-1.485-1.488v-.373c0-.905.685-1.566 1.58-1.654l.132-.013c.347-.008.636-.283.642-.63l.012-.952h.1c1.103 0 2 .897 2 2v1.5z" />
+                </svg>
+                Buy me a coffee
               </a>
-            </p>
 
-            <a
-              href="https://x.com/jeffgoldblumle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-3 py-1.5 bg-gradient-to-r from-gray-500 via-zinc-600 to-gray-700 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
-            >
-              <svg
-                className="w-4 h-4 fill-current mr-1.5"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+              <a
+                href="https://x.com/jeffgoldblumle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-3 py-1.5 bg-gradient-to-r from-gray-500 via-zinc-600 to-gray-700 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
               >
-                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-              </svg>
-              Offical Twxttxr Account
-            </a>
+                <svg
+                  className="w-4 h-4 fill-current mr-1.5"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+                Offical Twxttxr Account
+              </a>
+            </div>
 
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <span className="text-sm font-medium dark:text-gray-300">
