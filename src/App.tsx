@@ -259,9 +259,9 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
+      <div className="pt-0.5 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-center">
-          <div className="mb-4">
+          <div className="mb-2">
             <Alert
               isOpen={isVisible && status === 'success'}
               message={message || ''}
@@ -270,7 +270,7 @@ function App() {
             />
           </div>
 
-          <div className="pb-6 flex flex-col justify-center">
+          <div className="pb-4 flex flex-col justify-center">
             <Grid
               guesses={guesses}
               currentGuess={currentGuess}
