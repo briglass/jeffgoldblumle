@@ -41,8 +41,6 @@ import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
-import { AdsterraBanner } from './components/ads/AdsterraBanner'
-import { AdsterraNative } from './components/ads/AdsterraNative'
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -255,7 +253,6 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      <AdsterraBanner />
       <div className="pt-2 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-center">
           <div className="pb-6 flex flex-col justify-center">
@@ -370,8 +367,6 @@ function App() {
               Check out our sponsor
             </a> */}
           </div>
-
-          <AdsterraNative />
         </div>
 
         <InfoModal

@@ -89,7 +89,31 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Adsterra Banner 320x50 (Loaded statically right above game header) -->
+    <div style="display: flex; justify-content: center; align-items: center; margin: 16px 0; min-height: 50px; width: 100%;">
+      <div style="width: 320px; height: 50px; overflow: hidden;">
+        <script>
+          atOptions = {
+            'key' : 'e1ee64d62284de09cf102c1d4321b7f7',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://cameljolly.com/e1ee64d62284de09cf102c1d4321b7f7/invoke.js"></script>
+      </div>
+    </div>
+
     <div id="root"></div>   
+    
+    <!-- Adsterra Native Banner (Loaded statically at the absolute bottom of the viewport, after all social items inside the React root app) -->
+    <div style="display: flex; justify-content: center; align-items: center; margin: 16px 0; width: 100%; min-height: 100px;">
+      <div id="container-2a5e45dd8794e4310d9a930b4928f877" style="width: 100%; max-width: 1200px;">
+        <script async="async" data-cfasync="false" src="https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js"></script>
+      </div>
+    </div>
     
 <!--
       This HTML file is a template.
