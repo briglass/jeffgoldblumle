@@ -281,6 +281,8 @@ function App() {
             isRevealing={isRevealing}
           />
 
+          <AdsterraNative />
+
           <div className="pt-8 pb-6 flex flex-col items-center justify-center space-y-4">
             <p className="text-m font-medium text-black-100 text-center p-0.5 dark:text-white">
               <a
@@ -371,7 +373,6 @@ function App() {
             </a> */}
           </div>
         </div>
-        <AdsterraNative />
 
         <InfoModal
           isOpen={isInfoModalOpen}
