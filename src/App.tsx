@@ -335,6 +335,33 @@ function App() {
               Is this page associated with Jeff Goldblum?
             </a>
 
+            <div className="flex flex-wrap justify-center gap-3 items-center pt-1">
+              <a
+                href="/facts.html"
+                className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
+              >
+                20 Jeff Goldblum Facts
+              </a>
+              <span className="text-gray-300 dark:text-gray-600 text-xs">
+                ·
+              </span>
+              <a
+                href="/quotes.html"
+                className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
+              >
+                His Greatest Quotes
+              </a>
+              <span className="text-gray-300 dark:text-gray-600 text-xs">
+                ·
+              </span>
+              <a
+                href="/movies.html"
+                className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
+              >
+                Best Movies, Ranked
+              </a>
+            </div>
+
             <div className="flex flex-wrap justify-center gap-2 items-center">
               <span className="text-sm font-medium dark:text-gray-300">
                 Featured by:
