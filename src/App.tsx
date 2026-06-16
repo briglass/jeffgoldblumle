@@ -337,6 +337,15 @@ function App() {
 
             <div className="flex flex-wrap justify-center gap-3 items-center pt-1">
               <a
+                href="/about.html"
+                className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
+              >
+                About Us
+              </a>
+              <span className="text-gray-300 dark:text-gray-600 text-xs">
+                ·
+              </span>
+              <a
                 href="/facts.html"
                 className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
               >
