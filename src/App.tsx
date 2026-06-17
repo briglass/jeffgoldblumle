@@ -294,6 +294,13 @@ function App() {
           />
 
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
+            <div className="max-w-md mx-4 px-4 py-2 bg-amber-50 border border-amber-200 rounded-md text-center text-xs text-amber-800 dark:bg-amber-950/40 dark:border-amber-900/60 dark:text-amber-200 shadow-sm">
+              <span className="font-semibold block mb-1">⚠️ Notice</span>
+              We are aware some users are experiencing intrusive popup ads, and
+              appreciate your patience as we work with our hosting service to
+              eliminate these!
+            </div>
+
             <div className="flex flex-wrap justify-center gap-3 items-center">
               <a
                 href="https://www.buymeacoffee.com/briglass314"
