@@ -178,6 +178,66 @@
         document.addEventListener('DOMContentLoaded', periodicScan, { once: true });
         window.addEventListener('load', periodicScan, { once: true });
         setInterval(periodicScan, 1000);
+
+        // Block popunder windows and script-driven cross-origin redirects outside user gestures
+        let _gestureActive = false;
+        document.addEventListener('click', function () {
+          _gestureActive = true;
+          setTimeout(function () { _gestureActive = false; }, 1500);
+        }, true);
+
+        function _isSameOrigin(url) {
+          try { return new URL(url, location.href).hostname === location.hostname; } catch (e) { return true; }
+        }
+
+        const _nativeOpen = window.open;
+        window.open = function (url, name, specs) {
+          if (!_gestureActive) {
+            console.warn('[MalGuard] Blocked non-gesture window.open:', url);
+            return null;
+          }
+          return _nativeOpen.apply(window, arguments);
+        };
+
+        try {
+          const _hrefDesc = Object.getOwnPropertyDescriptor(Location.prototype, 'href');
+          if (_hrefDesc && _hrefDesc.set) {
+            Object.defineProperty(Location.prototype, 'href', {
+              configurable: true, enumerable: true,
+              get: _hrefDesc.get,
+              set: function (url) {
+                if (!_gestureActive && !_isSameOrigin(url)) {
+                  console.warn('[MalGuard] Blocked non-gesture location.href redirect:', url);
+                  return;
+                }
+                _hrefDesc.set.call(this, url);
+              },
+            });
+          }
+        } catch (e) {}
+
+        try {
+          const _nativeAssign = Location.prototype.assign;
+          Location.prototype.assign = function (url) {
+            if (!_gestureActive && !_isSameOrigin(url)) {
+              console.warn('[MalGuard] Blocked non-gesture location.assign:', url);
+              return;
+            }
+            _nativeAssign.call(this, url);
+          };
+        } catch (e) {}
+
+        try {
+          const _nativeReplace = Location.prototype.replace;
+          Location.prototype.replace = function (url) {
+            if (!_gestureActive && !_isSameOrigin(url)) {
+              console.warn('[MalGuard] Blocked non-gesture location.replace:', url);
+              return;
+            }
+            _nativeReplace.call(this, url);
+          };
+        } catch (e) {}
+
       })();
     </script>
     
