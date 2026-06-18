@@ -19,6 +19,104 @@
     </script>
 -->
     
+    <!-- Anti-Malicious-Overlay Guard -->
+    <script>
+      (function() {
+        const SUSPICIOUS_PHRASES = [
+          'install the extension',
+          'install extension',
+          'acess the content',
+          'content blocked',
+          'extension you get',
+          'without advertising on youtube',
+          'download the extension'
+        ];
+
+        function containsSuspiciousText(element) {
+          const text = (element.textContent || '').toLowerCase();
+          return SUSPICIOUS_PHRASES.some(phrase => text.includes(phrase));
+        }
+
+        function isLegitimate(element) {
+          if (!element) return true;
+          if (element.closest('#root')) return true;
+          if (element.id && element.id.includes('headlessui')) return true;
+          if (element.className && typeof element.className === 'string' && element.className.includes('headlessui')) return true;
+          if (element.closest('[id*="headlessui"]')) return true;
+          if (element.closest('[class*="headlessui"]')) return true;
+          return false;
+        }
+
+        function destroyRogueElement(element) {
+          console.warn('[AdGuard] Defeated rogue overlay ad element:', element);
+          element.remove();
+          document.body.style.overflow = '';
+          document.body.style.pointerEvents = '';
+          document.documentElement.style.overflow = '';
+          document.documentElement.style.pointerEvents = '';
+        }
+
+        function scanAndDestroy(node) {
+          if (!node || node.nodeType !== Node.ELEMENT_NODE) return;
+          if (!isLegitimate(node)) {
+            if (containsSuspiciousText(node)) {
+              destroyRogueElement(node);
+              return;
+            }
+            const style = window.getComputedStyle(node);
+            if (style.position === 'fixed' || style.position === 'absolute') {
+              const width = node.offsetWidth;
+              const height = node.offsetHeight;
+              const isLargeOverlay = (width > window.innerWidth * 0.8 && height > window.innerHeight * 0.8) || 
+                                     (style.width === '100vw' && style.height === '100vh') ||
+                                     (style.inset === '0px');
+              if (isLargeOverlay) {
+                if (node.querySelector('iframe') || containsSuspiciousText(node)) {
+                  destroyRogueElement(node);
+                  return;
+                }
+              }
+            }
+            const children = node.querySelectorAll('*');
+            for (let i = 0; i < children.length; i++) {
+              if (containsSuspiciousText(children[i])) {
+                destroyRogueElement(node);
+                break;
+              }
+            }
+          }
+        }
+
+        const observer = new MutationObserver((mutations) => {
+          for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+              scanAndDestroy(node);
+            }
+          }
+        });
+
+        if (document.documentElement) {
+          observer.observe(document.documentElement, { childList: true, subtree: true });
+        } else {
+          document.addEventListener('DOMContentLoaded', () => {
+            observer.observe(document.documentElement, { childList: true, subtree: true });
+          });
+        }
+
+        setInterval(() => {
+          const bodyChildren = document.body ? document.body.children : [];
+          for (let i = 0; i < bodyChildren.length; i++) {
+            const child = bodyChildren[i];
+            if (child.id !== 'root' && !isLegitimate(child)) {
+              if (containsSuspiciousText(child)) {
+                destroyRogueElement(child);
+              }
+            }
+          }
+        }, 500);
+      })();
+    </script>
+    
     <!-- Adsterra Social Bar -->
     <script src="https://cameljolly.com/56/01/e5/5601e5bed5d7aecfa194653ca07a15fb.js"></script>
 
