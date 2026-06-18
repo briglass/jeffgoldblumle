@@ -6,121 +6,163 @@
 
     <!-- Anti-Malicious-Overlay Guard -->
     <script>
-      (function() {
+      (function () {
+        'use strict';
+
+        const WHITELIST_IDS = new Set([
+          'root',
+          'container-2a5e45dd8794e4310d9a930b4928f877',
+        ]);
+
         const SUSPICIOUS_PHRASES = [
-          'install the extension',
-          'install extension',
-          'acess the content',
-          'content blocked',
-          'extension you get',
-          'without advertising on youtube',
-          'download the extension',
-          'adobe flash',
-          'flash player',
-          'out-of-date',
-          'software update',
-          'out of date'
+          'install the extension', 'install extension', 'access the content',
+          'acess the content', 'content blocked', 'extension you get',
+          'without advertising on youtube', 'download the extension',
+          'adobe flash', 'flash player', 'out-of-date', 'software update',
+          'out of date', 'update your browser', 'update required',
+          'click to continue', 'click allow to continue', 'press allow to continue',
+          'verify you are human', 'confirm you are not a robot', 'you are not a robot',
+          'enable notifications', 'allow notifications', 'tap allow',
+          'browser notification', 'confirm you are 18', 'age verification',
+          'complete the survey', 'claim your prize', 'you have been selected',
+          'click here to claim', 'congratulations, you won', 'spin to win',
+          'download required', 'your device is infected', 'virus detected',
+          'security alert', 'subscription expired', 'access blocked',
+          'one more step', 'unlock your reward',
         ];
 
-        function containsSuspiciousText(element) {
-          const text = (element.textContent || '').toLowerCase();
-          return SUSPICIOUS_PHRASES.some(phrase => text.includes(phrase));
+        function hasSuspiciousText(el) {
+          const text = (el.textContent || '').toLowerCase();
+          return SUSPICIOUS_PHRASES.some(p => text.includes(p));
         }
 
-        function isLegitimate(element) {
-          if (!element) return true;
-          if (element.closest('#root')) return true;
-          if (element.id && element.id.includes('headlessui')) return true;
-          if (element.className && typeof element.className === 'string' && element.className.includes('headlessui')) return true;
-          if (element.closest('[id*="headlessui"]')) return true;
-          if (element.closest('[class*="headlessui"]')) return true;
+        function isWhitelisted(el) {
+          if (!el || el.nodeType !== 1) return true;
+          if (WHITELIST_IDS.has(el.id)) return true;
+          if (el.closest) {
+            if (el.closest('#root')) return true;
+            if (el.closest('#container-2a5e45dd8794e4310d9a930b4928f877')) return true;
+            if (el.closest('[id*="headlessui"]')) return true;
+            if (el.closest('[class*="headlessui"]')) return true;
+          }
+          if (el.id && el.id.includes('headlessui')) return true;
+          if (typeof el.className === 'string' && el.className.includes('headlessui')) return true;
+          const tag = el.tagName && el.tagName.toUpperCase();
+          if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK' || tag === 'META' || tag === 'NOSCRIPT') return true;
           return false;
         }
 
-        function destroyRogueElement(element) {
-          console.warn('[AdGuard] Defeated rogue overlay ad element:', element);
-          element.remove();
-          document.body.style.overflow = '';
-          document.body.style.pointerEvents = '';
-          document.body.style.position = '';
-          document.documentElement.style.overflow = '';
-          document.documentElement.style.pointerEvents = '';
+        function getZIndex(s) {
+          const z = parseInt(s.zIndex, 10);
+          return isNaN(z) ? 0 : z;
         }
 
-        function scanAndDestroy(node) {
-          if (!node || node.nodeType !== Node.ELEMENT_NODE) return;
-          if (!isLegitimate(node)) {
-            if (containsSuspiciousText(node)) {
-              destroyRogueElement(node);
-              return;
+        function coversViewport(el) {
+          try {
+            const r = el.getBoundingClientRect();
+            const vw = window.innerWidth || 1;
+            const vh = window.innerHeight || 1;
+            return r.width >= vw * 0.75 && r.height >= vh * 0.75;
+          } catch (e) { return false; }
+        }
+
+        function isRogueOverlay(el) {
+          try {
+            const s = window.getComputedStyle(el);
+            const pos = s.position;
+            if (pos !== 'fixed' && pos !== 'absolute') return false;
+            if (!coversViewport(el)) return false;
+            if (pos === 'fixed') return true;
+            if (pos === 'absolute' && getZIndex(s) > 0) return true;
+            return false;
+          } catch (e) { return false; }
+        }
+
+        function isTransparentClickjacker(el) {
+          try {
+            const s = window.getComputedStyle(el);
+            const pos = s.position;
+            if (pos !== 'fixed' && pos !== 'absolute') return false;
+            if (getZIndex(s) < 500) return false;
+            const bg = s.backgroundColor || '';
+            const transBg = bg === 'transparent' || bg === 'rgba(0, 0, 0, 0)';
+            const opacity = parseFloat(s.opacity);
+            const transOp = !isNaN(opacity) && opacity < 0.05;
+            return (transBg || transOp) && coversViewport(el);
+          } catch (e) { return false; }
+        }
+
+        function restoreBodyStyles() {
+          try {
+            const b = document.body;
+            const h = document.documentElement;
+            if (b) {
+              if (b.style.overflow === 'hidden') b.style.removeProperty('overflow');
+              if (b.style.overflowY === 'hidden') b.style.removeProperty('overflow-y');
+              if (b.style.pointerEvents === 'none') b.style.removeProperty('pointer-events');
+              if (b.style.userSelect === 'none') b.style.removeProperty('user-select');
             }
-            const style = window.getComputedStyle(node);
-            if (style.position === 'fixed' || style.position === 'absolute') {
-              const width = node.offsetWidth;
-              const height = node.offsetHeight;
-              const isLargeOverlay = (width > window.innerWidth * 0.8 && height > window.innerHeight * 0.8) || 
-                                     (style.width === '100vw' && style.height === '100vh') ||
-                                     (style.inset === '0px');
-              
-              // If it's a huge overlay and has elements typical of these fake prompt alerts (like dialog popups outside React)
-              if (isLargeOverlay) {
-                const zIndex = parseInt(style.zIndex, 10);
-                if (zIndex > 10 || node.querySelector('iframe') || containsSuspiciousText(node)) {
-                  destroyRogueElement(node);
-                  return;
-                }
-              }
+            if (h) {
+              if (h.style.overflow === 'hidden') h.style.removeProperty('overflow');
+              if (h.style.pointerEvents === 'none') h.style.removeProperty('pointer-events');
             }
-            const children = node.querySelectorAll('*');
-            for (let i = 0; i < children.length; i++) {
-              if (containsSuspiciousText(children[i])) {
-                destroyRogueElement(node);
-                break;
-              }
+          } catch (e) {}
+        }
+
+        function purge(el) {
+          try {
+            console.warn('[MalGuard] Removing rogue overlay:', el.tagName, el.id ? '#' + el.id : '');
+            el.remove();
+          } catch (e) {}
+          restoreBodyStyles();
+        }
+
+        function inspect(el) {
+          if (!el || el.nodeType !== 1) return;
+          if (isWhitelisted(el)) return;
+          if (hasSuspiciousText(el)) { purge(el); return; }
+          if (isRogueOverlay(el)) { purge(el); return; }
+          if (isTransparentClickjacker(el)) { purge(el); return; }
+        }
+
+        function periodicScan() {
+          try {
+            const children = document.body ? Array.from(document.body.children) : [];
+            for (const child of children) {
+              if (!isWhitelisted(child)) inspect(child);
             }
-          }
+          } catch (e) {}
+          restoreBodyStyles();
         }
 
         const observer = new MutationObserver((mutations) => {
-          for (const mutation of mutations) {
-            for (const node of mutation.addedNodes) {
-              scanAndDestroy(node);
+          for (const m of mutations) {
+            if (m.type === 'childList') {
+              for (const node of m.addedNodes) inspect(node);
+            } else if (m.type === 'attributes' && m.target !== document.body && m.target !== document.documentElement) {
+              inspect(m.target);
             }
           }
+          restoreBodyStyles();
         });
 
-        if (document.documentElement) {
-          observer.observe(document.documentElement, { childList: true, subtree: true });
-        } else {
-          document.addEventListener('DOMContentLoaded', () => {
-            observer.observe(document.documentElement, { childList: true, subtree: true });
+        function start() {
+          observer.observe(document.documentElement, {
+            childList: true, subtree: true,
+            attributes: true, attributeFilter: ['style', 'class'],
           });
+          periodicScan();
         }
 
-        setInterval(() => {
-          const bodyChildren = document.body ? document.body.children : [];
-          for (let i = 0; i < bodyChildren.length; i++) {
-            const child = bodyChildren[i];
-            if (child.id !== 'root' && !isLegitimate(child)) {
-              if (containsSuspiciousText(child)) {
-                destroyRogueElement(child);
-              } else {
-                // If there's an overlay backdrop that freezes screen outside root
-                const style = window.getComputedStyle(child);
-                if ((style.position === 'fixed' || style.position === 'absolute') && parseInt(style.zIndex, 10) > 1) {
-                  if (style.width === '100vw' || style.inset === '0px' || (child.offsetWidth > window.innerWidth * 0.8 && child.offsetHeight > window.innerHeight * 0.8)) {
-                     destroyRogueElement(child);
-                  }
-                }
-              }
-            }
-          }
-          // Make sure body styles aren't hijacked
-          if (document.body && (document.body.style.overflow === 'hidden' || document.body.style.pointerEvents === 'none')) {
-             document.body.style.overflow = '';
-             document.body.style.pointerEvents = '';
-          }
-        }, 500);
+        if (document.documentElement) {
+          start();
+        } else {
+          document.addEventListener('DOMContentLoaded', start);
+        }
+
+        document.addEventListener('DOMContentLoaded', periodicScan, { once: true });
+        window.addEventListener('load', periodicScan, { once: true });
+        setInterval(periodicScan, 1000);
       })();
     </script>
 
