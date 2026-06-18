@@ -450,13 +450,11 @@
       </div>
     </main>
 
-    <!-- Adsterra Native Banner -->
-    <footer class="w-full bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 py-6">
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%; min-height: 100px;">
-        <script async="async" data-cfasync="false" src="https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js"></script>
-        <div id="container-2a5e45dd8794e4310d9a930b4928f877" style="width: 100%; max-width: 1200px; padding: 0 16px;"></div>
-      </div>
-    </footer>
+    <!-- Adsterra Native Banner (Loaded statically at the absolute bottom of the viewport, after all social items inside the React root app) -->
+    <div style="display: flex; justify-content: center; align-items: center; margin: 16px 0; width: 100%; min-height: 100px;">
+      <script async="async" data-cfasync="false" src="https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js"></script>
+      <div id="container-2a5e45dd8794e4310d9a930b4928f877" style="width: 100%; max-width: 1200px;"></div>
+    </div>
 
   </body>
 </html>
