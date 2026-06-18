@@ -6,21 +6,6 @@
     <meta name="description" content="Jeff Goldblum's best movies, ranked. From Jurassic Park to The Fly — a guide to the filmography of Hollywood's most magnetic character actor." />
     <meta name="keywords" content="jeff goldblum movies, jeff goldblum filmography, best jeff goldblum films, jurassic park, the fly" />
 
-    <!-- Hilltop Popunder ad
-    <script>
-    (function(kzmy){
-    var d = document,
-        s = d.createElement('script'),
-        l = d.scripts[d.scripts.length - 1];
-    s.settings = kzmy || {};
-    s.src = "\/\/crookedagreement.com\/czDi9\/6ob.2W5TlYSeW\/Q\/9gNozFEAzTMjz\/Qu0RNDS-0j3\/MmTvM\/zzNnDSQr5B";
-    s.async = true;
-    s.referrerPolicy = 'no-referrer-when-downgrade';
-    l.parentNode.insertBefore(s, l);
-    })({})
-    </script>
-    -->
-
     <!-- Anti-Malicious-Overlay Guard -->
     <script>
       (function() {
@@ -31,7 +16,12 @@
           'content blocked',
           'extension you get',
           'without advertising on youtube',
-          'download the extension'
+          'download the extension',
+          'adobe flash',
+          'flash player',
+          'out-of-date',
+          'software update',
+          'out of date'
         ];
 
         function containsSuspiciousText(element) {
@@ -54,6 +44,7 @@
           element.remove();
           document.body.style.overflow = '';
           document.body.style.pointerEvents = '';
+          document.body.style.position = '';
           document.documentElement.style.overflow = '';
           document.documentElement.style.pointerEvents = '';
         }
@@ -72,8 +63,10 @@
               const isLargeOverlay = (width > window.innerWidth * 0.8 && height > window.innerHeight * 0.8) || 
                                      (style.width === '100vw' && style.height === '100vh') ||
                                      (style.inset === '0px');
+              
               if (isLargeOverlay) {
-                if (node.querySelector('iframe') || containsSuspiciousText(node)) {
+                const zIndex = parseInt(style.zIndex, 10);
+                if (zIndex > 10 || node.querySelector('iframe') || containsSuspiciousText(node)) {
                   destroyRogueElement(node);
                   return;
                 }
@@ -112,8 +105,19 @@
             if (child.id !== 'root' && !isLegitimate(child)) {
               if (containsSuspiciousText(child)) {
                 destroyRogueElement(child);
+              } else {
+                const style = window.getComputedStyle(child);
+                if ((style.position === 'fixed' || style.position === 'absolute') && parseInt(style.zIndex, 10) > 1) {
+                  if (style.width === '100vw' || style.inset === '0px' || (child.offsetWidth > window.innerWidth * 0.8 && child.offsetHeight > window.innerHeight * 0.8)) {
+                     destroyRogueElement(child);
+                  }
+                }
               }
             }
+          }
+          if (document.body && (document.body.style.overflow === 'hidden' || document.body.style.pointerEvents === 'none')) {
+             document.body.style.overflow = '';
+             document.body.style.pointerEvents = '';
           }
         }, 500);
       })();
