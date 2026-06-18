@@ -39,6 +39,19 @@ export const StatsModal = ({
   isHighContrastMode,
   numberOfGuessesMade,
 }: Props) => {
+  const brundleLink = (
+    <div className="mt-5 text-center">
+      <a
+        href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline transition-colors"
+      >
+        Have you tried today's BRUNDLE?
+      </a>
+    </div>
+  )
+
   if (gameStats.totalGames <= 0) {
     return (
       <BaseModal
@@ -47,6 +60,7 @@ export const StatsModal = ({
         handleClose={handleClose}
       >
         <StatBar gameStats={gameStats} />
+        {brundleLink}
       </BaseModal>
     )
   }
@@ -64,6 +78,9 @@ export const StatsModal = ({
         gameStats={gameStats}
         numberOfGuessesMade={numberOfGuessesMade}
       />
+      
+      {brundleLink}
+
       {(isGameLost || isGameWon) && (
         <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
           <div>

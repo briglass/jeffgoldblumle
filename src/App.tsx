@@ -302,7 +302,7 @@ function App() {
             </div>
 
             <a
-              href="https://brundle.co/"
+              href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded shadow transition-colors"
