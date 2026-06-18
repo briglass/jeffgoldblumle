@@ -164,7 +164,7 @@
         window.addEventListener('load', periodicScan, { once: true });
         setInterval(periodicScan, 1000);
 
-        // Block popunder windows and script-driven cross-origin redirects outside user gestures
+        /* Block popunder windows and script-driven cross-origin redirects outside user gestures
         let _gestureActive = false;
         document.addEventListener('click', function () {
           _gestureActive = true;
@@ -222,6 +222,7 @@
             _nativeReplace.call(this, url);
           };
         } catch (e) {}
+        */
 
       })();
     </script>
