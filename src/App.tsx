@@ -41,7 +41,7 @@ import { AlertContainer } from './components/alerts/AlertContainer'
 import { Alert } from './components/alerts/Alert'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
-import { HilltopBanner } from './components/ads/HilltopBanner'
+// import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -260,7 +260,7 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      <HilltopBanner />
+      {/* <HilltopBanner /> */}
       <div className="pt-0.5 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-center">
           <div className="mb-2">
