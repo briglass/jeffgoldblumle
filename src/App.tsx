@@ -298,92 +298,92 @@ function App() {
           />
 
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
-            <a
-              href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded shadow transition-colors"
-            >
-              <svg
-                className="w-5 h-5 mr-2 flex-shrink-0"
-                viewBox="0 0 64 64"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <ellipse cx="32" cy="34" rx="10" ry="13" />
-                <ellipse cx="32" cy="18" rx="7" ry="6" />
-                <ellipse cx="26" cy="15" rx="4" ry="3.5" opacity="0.85" />
-                <ellipse cx="38" cy="15" rx="4" ry="3.5" opacity="0.85" />
-                <ellipse
-                  cx="16"
-                  cy="28"
-                  rx="11"
-                  ry="5"
-                  transform="rotate(-20 16 28)"
-                  opacity="0.55"
-                />
-                <ellipse
-                  cx="14"
-                  cy="38"
-                  rx="9"
-                  ry="4"
-                  transform="rotate(-15 14 38)"
-                  opacity="0.4"
-                />
-                <ellipse
-                  cx="48"
-                  cy="28"
-                  rx="11"
-                  ry="5"
-                  transform="rotate(20 48 28)"
-                  opacity="0.55"
-                />
-                <ellipse
-                  cx="50"
-                  cy="38"
-                  rx="9"
-                  ry="4"
-                  transform="rotate(15 50 38)"
-                  opacity="0.4"
-                />
-                <line
-                  x1="25"
-                  y1="36"
-                  x2="10"
-                  y2="44"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="25"
-                  y1="40"
-                  x2="9"
-                  y2="50"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="39"
-                  y1="36"
-                  x2="54"
-                  y2="44"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="39"
-                  y1="40"
-                  x2="55"
-                  y2="50"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-              </svg>
-              Check out BRUNDLE — part of the expanded JG universe!
-            </a>
-
             <div className="flex flex-wrap justify-center gap-3 items-center">
+              <a
+                href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded shadow transition-colors"
+              >
+                <svg
+                  className="w-4 h-4 mr-1.5 flex-shrink-0"
+                  viewBox="0 0 64 64"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <ellipse cx="32" cy="34" rx="10" ry="13" />
+                  <ellipse cx="32" cy="18" rx="7" ry="6" />
+                  <ellipse cx="26" cy="15" rx="4" ry="3.5" opacity="0.85" />
+                  <ellipse cx="38" cy="15" rx="4" ry="3.5" opacity="0.85" />
+                  <ellipse
+                    cx="16"
+                    cy="28"
+                    rx="11"
+                    ry="5"
+                    transform="rotate(-20 16 28)"
+                    opacity="0.55"
+                  />
+                  <ellipse
+                    cx="14"
+                    cy="38"
+                    rx="9"
+                    ry="4"
+                    transform="rotate(-15 14 38)"
+                    opacity="0.4"
+                  />
+                  <ellipse
+                    cx="48"
+                    cy="28"
+                    rx="11"
+                    ry="5"
+                    transform="rotate(20 48 28)"
+                    opacity="0.55"
+                  />
+                  <ellipse
+                    cx="50"
+                    cy="38"
+                    rx="9"
+                    ry="4"
+                    transform="rotate(15 50 38)"
+                    opacity="0.4"
+                  />
+                  <line
+                    x1="25"
+                    y1="36"
+                    x2="10"
+                    y2="44"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="25"
+                    y1="40"
+                    x2="9"
+                    y2="50"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="39"
+                    y1="36"
+                    x2="54"
+                    y2="44"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="39"
+                    y1="40"
+                    x2="55"
+                    y2="50"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+                Check out BRUNDLE — part of the expanded JG universe!
+              </a>
+
               <a
                 href="https://www.buymeacoffee.com/briglass314"
                 target="_blank"
