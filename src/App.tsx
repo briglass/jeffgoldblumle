@@ -385,19 +385,26 @@ function App() {
               </a>
 
               <a
-                href="https://www.buymeacoffee.com/briglass314"
+                href="https://jeffgoldblumle.printful.me/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-3 py-1.5 bg-gradient-to-r from-amber-700 via-amber-800 to-yellow-900 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
+                className="flex items-center px-3 py-1.5 bg-gradient-to-r from-violet-600 via-indigo-600 to-indigo-700 text-white text-xs font-bold rounded shadow hover:opacity-90 transition-opacity"
               >
                 <svg
-                  className="w-4 h-4 fill-current mr-1.5"
+                  className="w-4 h-4 mr-1.5"
+                  fill="none"
                   viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
                   aria-hidden="true"
                 >
-                  <path d="M20.216 6.415l-.132-.013c-.347-.008-.636-.283-.642-.63l-.012-.952c-.006-.411-.329-.715-.71-.715H3.666c-.38 0-.703.304-.71.715l-.012.952c-.006.347-.295.622-.642.63l-.132.013c-1.144.112-1.921 1.115-1.921 2.274v1.5c0 1.95 1.545 3.528 3.486 3.568l.012.952c.006.347.295.622.642.63l.132.013c.895.088 1.58.749 1.58 1.654v.373c0 .825-.66 1.488-1.485 1.488h-.3c-.825 0-1.5.675-1.5 1.5s.675 1.5 1.5 1.5h14c.825 0 1.5-.675 1.5-1.5s-.675-1.5-1.5-1.5h-.3c-.825 0-1.485-.663-1.485-1.488v-.373c0-.905.685-1.566 1.58-1.654l.132-.013c.347-.008.636-.283.642-.63l.012-.952h.1c1.103 0 2 .897 2 2v1.5z" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                  />
                 </svg>
-                Buy me a coffee
+                Official Merchandise Store
               </a>
 
               <a
@@ -512,27 +519,6 @@ function App() {
               >
                 @cerithdennis
               </a>
-            </div>
-
-            <div className="max-w-md mx-4 px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-md text-center text-sm text-emerald-900 dark:bg-emerald-950/40 dark:border-emerald-900/60 dark:text-emerald-200 shadow-sm">
-              <div className="flex items-center justify-center gap-2 mb-1 text-emerald-900 dark:text-emerald-200 font-semibold">
-                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900">
-                  <svg
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </span>
-                Issue resolved
-              </div>
-              The intrusive popup ad issue has been resolved. Thank you for your
-              patience.
             </div>
 
             {/* <a
