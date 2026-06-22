@@ -298,13 +298,6 @@ function App() {
           />
 
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
-            <div className="max-w-md mx-4 px-4 py-2 bg-amber-50 border border-amber-200 rounded-md text-center text-xs text-amber-800 dark:bg-amber-950/40 dark:border-amber-900/60 dark:text-amber-200 shadow-sm">
-              <span className="font-semibold block mb-1">⚠️ Notice</span>
-              We are aware some users are experiencing intrusive popup ads, and
-              appreciate your patience as we work with our hosting service to
-              eliminate these!
-            </div>
-
             <a
               href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
               target="_blank"
@@ -519,6 +512,27 @@ function App() {
               >
                 @cerithdennis
               </a>
+            </div>
+
+            <div className="max-w-md mx-4 px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-md text-center text-sm text-emerald-900 dark:bg-emerald-950/40 dark:border-emerald-900/60 dark:text-emerald-200 shadow-sm">
+              <div className="flex items-center justify-center gap-2 mb-1 text-emerald-900 dark:text-emerald-200 font-semibold">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900">
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                Issue resolved
+              </div>
+              The intrusive popup ad issue has been resolved. Thank you for your
+              patience.
             </div>
 
             {/* <a
