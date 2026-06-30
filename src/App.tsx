@@ -297,6 +297,18 @@ function App() {
             isRevealing={isRevealing}
           />
 
+          <div className="pt-4 pb-2 flex justify-center">
+            <a
+              href="https://www.lolword.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-4 my-2 px-6 py-3 bg-gradient-to-r from-lime-400 via-lime-300 to-yellow-300 text-black text-sm md:text-base font-extrabold border-[3px] border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 text-center uppercase tracking-wide"
+            >
+              Check out LOLWORD, the all new hub for absurdist/surrealist word
+              games
+            </a>
+          </div>
+
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
             <div className="flex flex-wrap justify-center gap-3 items-center">
               <a
@@ -429,15 +441,6 @@ function App() {
               className="text-xs font-semibold text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 underline transition-colors pt-1"
             >
               Is this page associated with Jeff Goldblum?
-            </a>
-
-            <a
-              href="https://cameljolly.com/b2vepaavfr?key=29625b5e2c86c03f516c2cf1cd265edc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-gradient-to-tr from-emerald-400 via-teal-500 to-cyan-600 text-white text-sm font-bold rounded shadow hover:opacity-90 transition-opacity"
-            >
-              Check out our sponsor!
             </a>
 
             <div className="flex flex-wrap justify-center gap-3 items-center pt-1">
