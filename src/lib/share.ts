@@ -22,7 +22,7 @@ export const shareStatus = (
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
     generateEmojiGrid(guesses, getEmojiTiles(isDarkMode, isHighContrastMode)) +
-    `\nhttps://jeffgoldblumle.com/\nNow part of LOLWORD.COM: https://www.lolword.com/`
+    `\nhttps://jeffgoldblumle.com/\nNow part of LOLWORD.COM: https://lolword.com?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner`
 
   const shareData = { text: textToShare }
 
