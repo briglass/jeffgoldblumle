@@ -45,7 +45,7 @@ export const GoogleAdDisplay = () => {
   }, [])
 
   return (
-    <div className="w-full overflow-hidden flex justify-center items-center my-4 min-h-[100px]">
+    <div className="w-full overflow-hidden flex justify-center items-center">
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}

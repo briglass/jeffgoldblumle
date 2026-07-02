@@ -67,7 +67,11 @@ svg.cursor-pointer:hover {
 }
 
 .navbar {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+
+.navbar hr {
+  margin: 0;
 }
 
 .navbar-content {
@@ -82,6 +86,30 @@ svg.cursor-pointer:hover {
 
 .right-icons {
   display: flex;
+}
+
+/* Cameljolly ad network - mobile 4-column grid layout */
+@media (max-width: 640px) {
+  .container-2a5e45dd8794e4310d9a930b4928f877__stand {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+    width: 100%;
+  }
+
+  .container-2a5e45dd8794e4310d9a930b4928f877__bn-container {
+    flex: unset !important;
+    width: 100% !important;
+  }
+
+  .container-2a5e45dd8794e4310d9a930b4928f877__bn {
+    width: 100%;
+  }
+
+  .container-2a5e45dd8794e4310d9a930b4928f877__img {
+    width: 100% !important;
+  }
 }
 
 @keyframes revealAbsentCharCell {

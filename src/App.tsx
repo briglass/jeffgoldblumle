@@ -42,6 +42,7 @@ import { Alert } from './components/alerts/Alert'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
+import { AdsterraNative } from './components/ads/AdsterraNative'
 // import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
@@ -261,18 +262,20 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      <GoogleAdDisplay />
+      {/* <GoogleAdDisplay /> */}
       {/* <HilltopBanner /> */}
-      <div className="pt-0.5 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
-        <div className="grow flex flex-col justify-center">
-          <div className="mb-2">
-            <Alert
-              isOpen={isVisible && status === 'success'}
-              message={message || ''}
-              variant="success"
-              inline={true}
-            />
-          </div>
+      <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
+        <div className="grow flex flex-col justify-start pt-1">
+          {isVisible && status === 'success' && (
+            <div className="mb-2">
+              <Alert
+                isOpen={isVisible && status === 'success'}
+                message={message || ''}
+                variant="success"
+                inline={true}
+              />
+            </div>
+          )}
 
           <div className="pb-4 flex flex-col justify-center">
             <Grid
@@ -297,12 +300,14 @@ function App() {
             isRevealing={isRevealing}
           />
 
-          <div className="pt-4 pb-2 flex justify-center">
+          <AdsterraNative />
+
+          <div className="pt-2 pb-1 flex justify-center">
             <a
               href="https://lolword.com?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-4 my-2 px-6 py-3 bg-gradient-to-r from-lime-400 via-lime-300 to-yellow-300 text-black text-sm md:text-base font-extrabold border-[3px] border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 text-center uppercase tracking-wide"
+              className="mx-4 my-1 px-4 py-1.5 bg-gradient-to-r from-lime-400 via-lime-300 to-yellow-300 text-black text-xs md:text-sm font-extrabold border-[2px] border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 text-center uppercase tracking-wide"
             >
               Check out LOLWORD.COM, the all new hub for absurdist/surrealist
               word games
