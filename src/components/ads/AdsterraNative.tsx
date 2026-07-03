@@ -5,6 +5,14 @@ export const AdsterraNative = () => {
   const adRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1' ||
+      process.env.NODE_ENV === 'development'
+    ) {
+      return
+    }
+
     if (!adRef.current) return
 
     // Clean any existing elements to prevent double rendering
