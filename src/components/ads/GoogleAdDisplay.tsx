@@ -2,6 +2,16 @@ import { useEffect } from 'react'
 
 export const GoogleAdDisplay = () => {
   useEffect(() => {
+    // Avoid loading or running AdSense scripts on localhost or during development.
+    // This prevents generic "Script error." overlay crashes caused by adblockers or local loading issues.
+    if (
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1' ||
+      process.env.NODE_ENV === 'development'
+    ) {
+      return
+    }
+
     const adWindow = window as Window & {
       adsbygoogle?: unknown[]
     }

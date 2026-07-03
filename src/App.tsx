@@ -262,7 +262,7 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      {/* <GoogleAdDisplay /> */}
+      <GoogleAdDisplay />
       {/* <HilltopBanner /> */}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
