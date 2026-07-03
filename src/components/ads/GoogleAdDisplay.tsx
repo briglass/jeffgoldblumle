@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 
 export const GoogleAdDisplay = () => {
   useEffect(() => {
-    // Avoid loading or running AdSense scripts on localhost or during development.
-    // This prevents generic "Script error." overlay crashes caused by adblockers or local loading issues.
+    // Avoid running AdSense on localhost / development to prevent console/runtime errors
     if (
       window.location.hostname === 'localhost' ||
       window.location.hostname === '127.0.0.1' ||
@@ -12,50 +11,17 @@ export const GoogleAdDisplay = () => {
       return
     }
 
-    const adWindow = window as Window & {
-      adsbygoogle?: unknown[]
-    }
-
-    const pushAd = () => {
-      try {
-        // @ts-ignore
-        ;(adWindow.adsbygoogle = adWindow.adsbygoogle || []).push({})
-      } catch (e) {
-        console.error('Google Adsense error', e)
-      }
-    }
-
     try {
-      const scriptId = 'google-adsense-loader'
-      const existingScript = document.getElementById(
-        scriptId
-      ) as HTMLScriptElement | null
-
-      if (existingScript) {
-        if (adWindow.adsbygoogle) {
-          pushAd()
-        } else {
-          existingScript.addEventListener('load', pushAd, { once: true })
-        }
-        return
-      }
-
-      const script = document.createElement('script')
-      script.id = scriptId
-      script.async = true
-      script.src =
-        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425'
-      script.crossOrigin = 'anonymous'
-      script.onload = pushAd
-
-      document.head.appendChild(script)
+      // @ts-ignore
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     } catch (e) {
       console.error('Google Adsense error', e)
     }
   }, [])
 
   return (
-    <div className="w-full overflow-hidden flex justify-center items-center">
+    <div className="w-full overflow-hidden flex justify-center items-center my-2">
+      {/* horizontal display ad 01 */}
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
