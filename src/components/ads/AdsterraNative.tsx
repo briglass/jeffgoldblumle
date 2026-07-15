@@ -48,7 +48,7 @@ export const AdsterraNative = () => {
 
   return (
     <div className="flex justify-center items-center my-4 w-full min-h-[100px]">
-      <div id={containerId} ref={adRef} className="w-full max-w-[1200px]" />
+      <div id={containerId} ref={adRef} className="w-full" />
     </div>
   )
 }

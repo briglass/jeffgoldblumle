@@ -88,28 +88,28 @@ svg.cursor-pointer:hover {
   display: flex;
 }
 
-/* Cameljolly ad network - mobile 4-column grid layout */
-@media (max-width: 640px) {
-  .container-2a5e45dd8794e4310d9a930b4928f877__stand {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 0 !important;
-    flex-wrap: nowrap !important;
-    width: 100%;
-  }
+/* Cameljolly ad network - 1x1 full width stretch layout */
+.container-2a5e45dd8794e4310d9a930b4928f877__stand {
+  display: block !important;
+  width: 100% !important;
+}
 
-  .container-2a5e45dd8794e4310d9a930b4928f877__bn-container {
-    flex: unset !important;
-    width: 100% !important;
-  }
+.container-2a5e45dd8794e4310d9a930b4928f877__bn-container {
+  flex: unset !important;
+  width: 100% !important;
+  display: block !important;
+}
 
-  .container-2a5e45dd8794e4310d9a930b4928f877__bn {
-    width: 100%;
-  }
+.container-2a5e45dd8794e4310d9a930b4928f877__bn {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
 
-  .container-2a5e45dd8794e4310d9a930b4928f877__img {
-    width: 100% !important;
-  }
+.container-2a5e45dd8794e4310d9a930b4928f877__img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
 }
 
 @keyframes revealAbsentCharCell {
