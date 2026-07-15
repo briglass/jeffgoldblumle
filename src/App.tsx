@@ -302,18 +302,6 @@ function App() {
 
           <AdsterraNative />
 
-          <div className="pt-2 pb-1 flex justify-center">
-            <a
-              href="https://lolword.com?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mx-4 my-1 px-4 py-1.5 bg-gradient-to-r from-lime-400 via-lime-300 to-yellow-300 text-black text-xs md:text-sm font-extrabold border-[2px] border-black rounded-lg shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 text-center uppercase tracking-wide"
-            >
-              Check out LOLWORD.COM, the all new hub for absurdist/surrealist
-              word games
-            </a>
-          </div>
-
           <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
             <div className="flex flex-wrap justify-center gap-3 items-center">
               <a
