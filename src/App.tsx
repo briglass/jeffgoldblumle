@@ -302,7 +302,7 @@ function App() {
 
           <div className="flex justify-center mt-4 mb-4">
             <a
-              href="https://www.tiktok.com/@jeffgoldblumle/video/7663631092695502111"
+              href="https://www.tiktok.com/@jeffgoldblumle"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center px-4 py-2 bg-black hover:bg-zinc-800 text-white text-sm font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 border border-zinc-800 dark:border-zinc-700"
