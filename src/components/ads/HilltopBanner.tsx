@@ -11,7 +11,8 @@ export const HilltopBanner = () => {
 
     // Create the script element directly
     const s = document.createElement('script')
-    s.src = "//shameful-farm.com/brX/V/s.dSGflK0sYAWEcB/zeMmJ9/uxZBUKlkkFPMT-cExNMgzLMszfM/TNM/t/N/z/EzzgMqzeM/x-NNwT"
+    s.src =
+      '//shameful-farm.com/brX/V/s.dSGflK0sYAWEcB/zeMmJ9/uxZBUKlkkFPMT-cExNMgzLMszfM/TNM/t/N/z/EzzgMqzeM/x-NNwT'
     s.async = true
     s.referrerPolicy = 'no-referrer-when-downgrade'
     // @ts-ignore

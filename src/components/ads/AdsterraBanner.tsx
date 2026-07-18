@@ -25,23 +25,31 @@ export const AdsterraBanner = () => {
     // Create the script element to load invoke.js
     const invokeScript = document.createElement('script')
     invokeScript.type = 'text/javascript'
-    invokeScript.src = 'https://cameljolly.com/e1ee64d62284de09cf102c1d4321b7f7/invoke.js'
+    invokeScript.src =
+      'https://cameljolly.com/e1ee64d62284de09cf102c1d4321b7f7/invoke.js'
 
     bannerRef.current.appendChild(atOptionsScript)
     bannerRef.current.appendChild(invokeScript)
 
     return () => {
-      if (atOptionsScript.parentNode) atOptionsScript.parentNode.removeChild(atOptionsScript)
-      if (invokeScript.parentNode) invokeScript.parentNode.removeChild(invokeScript)
+      if (atOptionsScript.parentNode)
+        atOptionsScript.parentNode.removeChild(atOptionsScript)
+      if (invokeScript.parentNode)
+        invokeScript.parentNode.removeChild(invokeScript)
 
       // Clear any global arrays on window that prevent re-initialization of this placement
       Object.keys(window).forEach((key) => {
         try {
           // @ts-ignore
           const val = window[key]
-          if (Array.isArray(val) && val.includes('e1ee64d62284de09cf102c1d4321b7f7')) {
+          if (
+            Array.isArray(val) &&
+            val.includes('e1ee64d62284de09cf102c1d4321b7f7')
+          ) {
             // @ts-ignore
-            window[key] = val.filter((item) => item !== 'e1ee64d62284de09cf102c1d4321b7f7')
+            window[key] = val.filter(
+              (item) => item !== 'e1ee64d62284de09cf102c1d4321b7f7'
+            )
           }
         } catch (e) {
           // Ignore security/access errors for some window properties

@@ -30,7 +30,9 @@ export const Navbar = ({
           />
         </div>
         <div className="flex flex-col items-center">
-          <p className="text-xl font-bold dark:text-white leading-none">{GAME_TITLE}</p>
+          <p className="text-xl font-bold dark:text-white leading-none">
+            {GAME_TITLE}
+          </p>
           <a
             href="https://lolword.com?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
             target="_blank"

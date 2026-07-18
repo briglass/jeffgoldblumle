@@ -91,7 +91,6 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
           status="correct"
         />
       </div>
-
     </BaseModal>
   )
 }

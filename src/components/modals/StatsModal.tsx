@@ -78,7 +78,7 @@ export const StatsModal = ({
         gameStats={gameStats}
         numberOfGuessesMade={numberOfGuessesMade}
       />
-      
+
       {brundleLink}
 
       {(isGameLost || isGameWon) && (

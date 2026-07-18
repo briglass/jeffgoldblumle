@@ -21,7 +21,8 @@ export const AdsterraNative = () => {
     const script = document.createElement('script')
     script.async = true
     script.setAttribute('data-cfasync', 'false')
-    script.src = 'https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js'
+    script.src =
+      'https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js'
 
     adRef.current.appendChild(script)
 
@@ -29,15 +30,20 @@ export const AdsterraNative = () => {
       if (script.parentNode) {
         script.parentNode.removeChild(script)
       }
-      
+
       // Clear any global arrays on window that prevent re-initialization of this placement
       Object.keys(window).forEach((key) => {
         try {
           // @ts-ignore
           const val = window[key]
-          if (Array.isArray(val) && val.includes('2a5e45dd8794e4310d9a930b4928f877')) {
+          if (
+            Array.isArray(val) &&
+            val.includes('2a5e45dd8794e4310d9a930b4928f877')
+          ) {
             // @ts-ignore
-            window[key] = val.filter((item) => item !== '2a5e45dd8794e4310d9a930b4928f877')
+            window[key] = val.filter(
+              (item) => item !== '2a5e45dd8794e4310d9a930b4928f877'
+            )
           }
         } catch (e) {
           // Ignore security/access errors for some window properties

@@ -20,7 +20,7 @@ export const WIN_MESSAGES = [
   'I don`t think I`m constructed for this',
   'Revolution? Where is the Revolution? I don`t see any Revolution',
   'You`re a wizard, Harry... wait, wrong movie',
-  'Yeah, but your scientists were so preoccupied with whether or not they could, they didn`t stop to think if they should'
+  'Yeah, but your scientists were so preoccupied with whether or not they could, they didn`t stop to think if they should',
 ]
 export const GAME_COPIED_MESSAGE = 'Game copied to clipboard'
 export const NOT_ENOUGH_LETTERS_MESSAGE = 'Not enough letters'
