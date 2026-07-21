@@ -302,7 +302,7 @@ function App() {
 
           <div className="flex justify-center mt-4 mb-4">
             <a
-              href="https://www.tiktok.com/@jeffgoldblumle"
+              href="https://www.tiktok.com/@jeffgoldblumle/video/7664984375771008287"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center px-4 py-2 bg-black hover:bg-zinc-800 text-white text-sm font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 border border-zinc-800 dark:border-zinc-700"
@@ -314,7 +314,11 @@ function App() {
               >
                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.95 1.12 2.27 1.89 3.66 2.18.01 1.25.01 2.5 0 3.75-1.12-.02-2.24-.26-3.27-.73-.83-.37-1.58-.91-2.2-1.58v6.78c.07 1.41-.25 2.85-.98 4.03-.83 1.4-2.14 2.48-3.66 3.02-1.62.62-3.41.65-5.06.08-1.59-.51-3-1.54-3.96-2.94-1.1-1.53-1.55-3.48-1.27-5.35.31-1.88 1.41-3.56 2.99-4.57 1.39-.93 3.08-1.33 4.73-1.13v3.74c-.81-.15-1.66-.02-2.4.34-.73.34-1.32.96-1.62 1.71-.35.83-.32 1.79.1 2.58.41.77 1.16 1.31 2.01 1.48 1.02.21 2.13-.1 2.87-.84.62-.61.94-1.47.92-2.34V0h3.29z" />
               </svg>
-              Playing every day until Jeff Goldblum plays
+              <div className="text-left text-xs sm:text-sm">
+                Trying to get Jeff Goldblum to play!
+                <br />
+                Check it out on Tik Tok
+              </div>
             </a>
           </div>
 
