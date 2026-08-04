@@ -676,6 +676,10 @@ function App() {
             setIsStatsModalOpen(false)
             setIsSubscribeModalOpen(true)
           }}
+          onCreatorInfoClick={() => {
+            setIsStatsModalOpen(false)
+            setIsCreatorInfoModalOpen(true)
+          }}
         />
         <SettingsModal
           isOpen={isSettingsModalOpen}

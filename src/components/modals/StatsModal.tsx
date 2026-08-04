@@ -26,6 +26,7 @@ type Props = {
   numberOfGuessesMade: number
   isSubscriber: boolean
   onSubscribeClick: () => void
+  onCreatorInfoClick: () => void
 }
 
 export const StatsModal = ({
@@ -42,6 +43,7 @@ export const StatsModal = ({
   numberOfGuessesMade,
   isSubscriber,
   onSubscribeClick,
+  onCreatorInfoClick,
 }: Props) => {
   const subscribeLink = isSubscriber ? null : (
     <div className="mt-5 text-center">
@@ -52,6 +54,15 @@ export const StatsModal = ({
       >
         ✨ Subscribe to go ad-free! ✨
       </button>
+      <div className="mt-2">
+        <button
+          type="button"
+          onClick={onCreatorInfoClick}
+          className="text-xs font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 underline transition-colors"
+        >
+          Want ad-free for free? Learn more
+        </button>
+      </div>
     </div>
   )
 
