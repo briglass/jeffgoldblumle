@@ -265,11 +265,32 @@
       <script defer data-domain="%REACT_APP_PLAUSIBLE_DOMAIN%" src="https://plausible.io/js/plausible.js"></script>
     <% } %>
     
+    <!-- Ad-free subscribers: skip loading ad scripts entirely.
+         Kept in sync with the localStorage key written by src/lib/subscription.ts -->
+    <script>
+      window.__JGLE_AD_FREE__ = false;
+      try {
+        var __jgleSub = JSON.parse(localStorage.getItem('adFreeSubscription') || 'null');
+        if (__jgleSub && __jgleSub.expiresAt && __jgleSub.expiresAt > Date.now()) {
+          window.__JGLE_AD_FREE__ = true;
+        }
+      } catch (e) {}
+    </script>
+
     <% if (process.env.NODE_ENV === 'production') { %>
       <!-- Google AdSense auto-ads -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425" crossorigin="anonymous"></script>
+      <script>
+        if (!window.__JGLE_AD_FREE__) {
+          var __jgleAds = document.createElement('script');
+          __jgleAds.async = true;
+          __jgleAds.crossOrigin = 'anonymous';
+          __jgleAds.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425';
+          document.head.appendChild(__jgleAds);
+        }
+      </script>
     <% } %>
     <script>
+    if (!window.__JGLE_AD_FREE__) {
     (function(vhq){
     var d = document,
         s = d.createElement('script'),
@@ -280,6 +301,7 @@
     s.referrerPolicy = 'no-referrer-when-downgrade';
     l.parentNode.insertBefore(s, l);
     })({})
+    }
     </script>
     
   </head>
