@@ -24,6 +24,8 @@ type Props = {
   isDarkMode: boolean
   isHighContrastMode: boolean
   numberOfGuessesMade: number
+  isSubscriber: boolean
+  onSubscribeClick: () => void
 }
 
 export const StatsModal = ({
@@ -38,17 +40,18 @@ export const StatsModal = ({
   isDarkMode,
   isHighContrastMode,
   numberOfGuessesMade,
+  isSubscriber,
+  onSubscribeClick,
 }: Props) => {
-  const brundleLink = (
+  const subscribeLink = isSubscriber ? null : (
     <div className="mt-5 text-center">
-      <a
-        href="https://brundle.co?utm_source=jeffgoldblumle&utm_medium=referral&utm_campaign=partner"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm font-semibold text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 underline transition-colors"
+      <button
+        type="button"
+        onClick={onSubscribeClick}
+        className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 underline transition-colors"
       >
-        Have you tried today's BRUNDLE?
-      </a>
+        ✨ Subscribe to go ad-free! ✨
+      </button>
     </div>
   )
 
@@ -60,7 +63,7 @@ export const StatsModal = ({
         handleClose={handleClose}
       >
         <StatBar gameStats={gameStats} />
-        {brundleLink}
+        {subscribeLink}
       </BaseModal>
     )
   }
@@ -79,7 +82,7 @@ export const StatsModal = ({
         numberOfGuessesMade={numberOfGuessesMade}
       />
 
-      {brundleLink}
+      {subscribeLink}
 
       {(isGameLost || isGameWon) && (
         <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
