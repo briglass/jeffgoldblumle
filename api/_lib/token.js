@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 
 const TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000 // 30 days
+const MAGIC_TTL_MS = 15 * 60 * 1000 // sign-in links are short-lived
 
 // Tokens are HMAC-signed so the client cannot forge subscriber status.
 // A dedicated secret can be set via SUBSCRIPTION_TOKEN_SECRET; otherwise one
@@ -30,6 +31,12 @@ const issueToken = (customerId, email) => {
   }
 }
 
+const issueMagicToken = (email) => {
+  const payload = { p: 'magic', e: email, exp: Date.now() + MAGIC_TTL_MS }
+  const encoded = Buffer.from(JSON.stringify(payload)).toString('base64url')
+  return `${encoded}.${sign(encoded)}`
+}
+
 const verifyToken = (token) => {
   if (typeof token !== 'string') return null
   const [encoded, signature] = token.split('.')
@@ -45,4 +52,4 @@ const verifyToken = (token) => {
   }
 }
 
-module.exports = { issueToken, verifyToken }
+module.exports = { issueToken, issueMagicToken, verifyToken }

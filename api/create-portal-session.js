@@ -15,6 +15,11 @@ module.exports = async (req, res) => {
   if (!payload || !payload.c) {
     return res.status(401).json({ error: 'Invalid token' })
   }
+  if (payload.c.startsWith('free:')) {
+    return res
+      .status(400)
+      .json({ error: 'Complimentary access has no billing to manage' })
+  }
 
   try {
     const session = await stripe.billingPortal.sessions.create({

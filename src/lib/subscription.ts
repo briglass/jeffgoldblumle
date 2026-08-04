@@ -107,13 +107,35 @@ export const refreshSubscriptionStatus = async (): Promise<boolean> => {
   }
 }
 
-export const restoreByEmail = async (email: string): Promise<boolean> => {
-  const data = await postJson('/api/restore-subscription', { email })
-  if (data.active && data.token) {
-    saveSubscription(data)
-    return true
+// Asks the server to email a one-time sign-in link. Resolves true if the
+// email has access (link sent), false if it has no subscription/free access.
+export const requestMagicLink = async (email: string): Promise<boolean> => {
+  const data = await postJson('/api/request-magic-link', { email })
+  return !!data.eligible
+}
+
+export const verifyMagicLink = async (magicToken: string): Promise<boolean> => {
+  try {
+    const data = await postJson('/api/verify-magic-link', { magicToken })
+    if (data.active && data.token) {
+      saveSubscription(data)
+      return true
+    }
+    return false
+  } catch (e) {
+    return false
   }
-  return false
+}
+
+// Free-list users get a synthetic "free:<email>" customer id — they have no
+// Stripe billing to manage.
+export const hasComplimentaryAccess = (): boolean => {
+  const sub = getStoredSubscription()
+  return (
+    !!sub &&
+    typeof sub.customerId === 'string' &&
+    sub.customerId.startsWith('free:')
+  )
 }
 
 export const openBillingPortal = async () => {

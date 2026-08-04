@@ -9,6 +9,7 @@ import {
   isSubscriberNow,
   refreshSubscriptionStatus,
   verifyCheckoutSession,
+  verifyMagicLink,
 } from './lib/subscription'
 import { Analytics } from '@vercel/analytics/react'
 import {
@@ -130,6 +131,24 @@ function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const sessionId = params.get('session_id')
+    const magicToken = params.get('magic')
+
+    // Arrived via an emailed sign-in link: verify it, then reload so the ad
+    // scripts in the page head are skipped from the very start.
+    if (magicToken) {
+      verifyMagicLink(magicToken).then((verified) => {
+        if (verified) {
+          window.location.replace('/?subscribed=1')
+        } else {
+          window.history.replaceState({}, '', window.location.pathname)
+          showErrorAlert(
+            'That sign-in link is invalid or expired. Request a new one from the Go Ad-Free menu.',
+            { persist: true }
+          )
+        }
+      })
+      return
+    }
 
     // Returning from Stripe Checkout: verify with the server, then reload so
     // the ad scripts in the page head are skipped from the very start.
@@ -152,7 +171,7 @@ function App() {
       window.history.replaceState({}, '', window.location.pathname)
       if (isSubscriberNow()) {
         setIsSubscriber(true)
-        showSuccessAlert('Ad-free subscription active. Enjoy the clean game!')
+        showSuccessAlert('Ad-free access active. Enjoy the clean game!')
       }
       return
     }

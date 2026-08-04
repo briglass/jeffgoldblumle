@@ -14,11 +14,14 @@ Subscribers see no ads and no promo links — just the raw game.
   and skips loading the ad scripts entirely; the React app also hides all ad
   slots and promo links. Status is re-confirmed with Stripe once a day.
 - Access is **per browser**. On another device, subscribers use
-  **Go Ad-Free → Restore** and enter their email. (Trade-off: anyone who knows
-  a subscriber's email could restore on their own device — acceptable for an
-  ad-free perk, since there's no personal data behind it.)
+  **Go Ad-Free → Send link**: they enter their email and receive a one-time
+  **magic sign-in link** (expires in 15 minutes). Opening it on a device
+  activates ad-free access there. Only the inbox owner can get access.
+- **Free access list**: emails in the `FREE_ACCESS_EMAILS` environment
+  variable (friends, family, you) get ad-free access without paying — they use
+  the same "Send link" flow. See below.
 - **Manage billing** opens the Stripe Customer Portal (cancel, change card,
-  invoices).
+  invoices). Free-list users don't see it — they have no billing.
 
 ## One-time setup
 
@@ -38,12 +41,16 @@ recurring yearly) and copy its price ID.
 
 In the Vercel project: **Settings → Environment Variables** (Production):
 
-| Name                | Value                                    |
-| ------------------- | ---------------------------------------- |
-| `STRIPE_SECRET_KEY` | `sk_live_...` (from the Stripe dashboard) |
-| `STRIPE_PRICE_ID`   | `price_...` (from step 1)                 |
+| Name                 | Value                                                        |
+| -------------------- | ------------------------------------------------------------ |
+| `STRIPE_SECRET_KEY`  | `sk_live_...` (from the Stripe dashboard)                     |
+| `STRIPE_PRICE_ID`    | `price_...` (from step 1)                                     |
+| `RESEND_API_KEY`     | `re_...` (from step 4 — needed for magic sign-in links)       |
+| `MAGIC_LINK_FROM`    | optional; e.g. `JEFFGOLDBLUMLE <noreply@jeffgoldblumle.com>` |
+| `FREE_ACCESS_EMAILS` | optional; comma-separated free-access list (see below)        |
 
-Then redeploy (or just push — the next deploy picks them up).
+Then redeploy (or just push — the next deploy picks them up). **Env var
+changes only take effect after a redeploy.**
 
 Note: the publishable key (`pk_live_...`) is **not needed** — Checkout is
 created server-side and the browser is simply redirected to Stripe's URL.
@@ -52,6 +59,37 @@ created server-side and the browser is simply redirected to Stripe's URL.
 
 Visit https://dashboard.stripe.com/settings/billing/portal and click **Save**
 once to activate the default configuration.
+
+### 4. Set up Resend (sends the magic sign-in links)
+
+1. Sign up at https://resend.com (free tier: 3,000 emails/month).
+2. **Domains → Add domain** → `jeffgoldblumle.com`, then add the DNS records
+   Resend shows you (SPF + DKIM) at your DNS host and wait for it to verify.
+   Until the domain verifies, Resend can only send to your own account email.
+3. **API Keys → Create API key**, and set it as `RESEND_API_KEY` on Vercel.
+4. Optionally set `MAGIC_LINK_FROM` — the address must be on the verified
+   domain. Defaults to `JEFFGOLDBLUMLE <noreply@jeffgoldblumle.com>`.
+
+## Free access for friends & family
+
+Set the `FREE_ACCESS_EMAILS` environment variable on Vercel to a
+comma-separated list:
+
+```
+FREE_ACCESS_EMAILS=briglass@gmail.com, friend@example.com, mom@example.com
+```
+
+Redeploy after editing it. People on the list never touch Stripe:
+
+1. They open the site → **Go Ad-Free → "Already have access?" → Send link**.
+2. They enter their email and click the link that arrives. Done.
+
+Removing an email from the list (and redeploying) revokes their access within
+a day (the app re-confirms daily), 30 days at the absolute worst case.
+
+An alternative for one-offs: create a **100%-off forever** promo code (see
+Coupon codes below) — checkout skips card entry for fully-discounted
+subscriptions, and they'll show up in Stripe as regular $0 subscribers.
 
 ## Coupon codes (including one-time-use)
 
@@ -78,8 +116,10 @@ the two env vars in `.env.local` or link the project with `vercel env pull`).
 
 ## Files involved
 
-- `api/` — serverless functions (checkout, verify, daily re-check, restore
-  by email, billing portal). `api/_lib/` holds shared helpers.
+- `api/` — serverless functions (checkout, verify, daily re-check, magic
+  sign-in links, billing portal). `api/_lib/` holds shared helpers, including
+  the email sender (`_lib/email.js` — swap this file to change providers) and
+  the free list check (`_lib/freeList.js`).
 - `src/lib/subscription.ts` — client-side subscription state + API calls.
 - `src/components/modals/SubscribeModal.tsx` — subscribe/restore/manage UI.
 - `src/App.tsx`, `src/components/navbar/Navbar.tsx` — hide ads/promos for
