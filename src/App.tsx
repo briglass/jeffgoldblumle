@@ -5,6 +5,7 @@ import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import { SettingsModal } from './components/modals/SettingsModal'
 import { SubscribeModal } from './components/modals/SubscribeModal'
+import { CreatorInfoModal } from './components/modals/CreatorInfoModal'
 import {
   isSubscriberNow,
   refreshSubscriptionStatus,
@@ -71,6 +72,7 @@ function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false)
   const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState(false)
+  const [isCreatorInfoModalOpen, setIsCreatorInfoModalOpen] = useState(false)
   const [isSubscriber, setIsSubscriber] = useState(isSubscriberNow)
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [isGameLost, setIsGameLost] = useState(false)
@@ -370,7 +372,19 @@ function App() {
                 onClick={() => setIsSubscribeModalOpen(true)}
                 className="text-xs font-semibold text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-200 underline transition-colors"
               >
-                ✨ Tired of ads? Subscribe for an ad-free experience
+                ✨ Subscribe to go ad-free! ✨
+              </button>
+            </div>
+          )}
+
+          {!isSubscriber && (
+            <div className="flex justify-center mt-2">
+              <button
+                type="button"
+                onClick={() => setIsCreatorInfoModalOpen(true)}
+                className="text-xs font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 underline transition-colors"
+              >
+                Want ad-free for free? Learn more
               </button>
             </div>
           )}
@@ -672,6 +686,10 @@ function App() {
           isOpen={isSubscribeModalOpen}
           handleClose={() => setIsSubscribeModalOpen(false)}
           isSubscriber={isSubscriber}
+        />
+        <CreatorInfoModal
+          isOpen={isCreatorInfoModalOpen}
+          handleClose={() => setIsCreatorInfoModalOpen(false)}
         />
         <AlertContainer />
         <Analytics />
