@@ -51,6 +51,7 @@ import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { AdsterraNative } from './components/ads/AdsterraNative'
+import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
 // import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
@@ -702,6 +703,7 @@ function App() {
         <AlertContainer />
         <Analytics />
         {!isSubscriber && <GoogleAdDisplay />}
+        {!isSubscriber && <AdsterraSocialBar />}
       </div>
     </div>
   )
