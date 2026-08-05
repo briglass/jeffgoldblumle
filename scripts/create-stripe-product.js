@@ -22,12 +22,12 @@ const stripe = new Stripe(key)
   })
   const price = await stripe.prices.create({
     product: product.id,
-    unit_amount: 999,
+    unit_amount: 500,
     currency: 'usd',
     recurring: { interval: 'year' },
   })
   console.log(`Created product: ${product.id}`)
-  console.log(`Created price:   ${price.id} ($9.99/year)`)
+  console.log(`Created price:   ${price.id} ($5/year)`)
   console.log('')
   console.log('Now add these environment variables to your Vercel project')
   console.log('(Settings > Environment Variables), then redeploy:')

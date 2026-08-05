@@ -1,6 +1,6 @@
 # Ad-Free Subscription — Setup & Operations
 
-The site sells a **$9.99/year ad-free subscription** via Stripe Checkout.
+The site sells a **$5/year ad-free subscription** via Stripe Checkout.
 Subscribers see no ads and no promo links — just the raw game.
 
 ## How it works
@@ -34,8 +34,15 @@ node scripts/create-stripe-product.js sk_live_YOUR_SECRET_KEY
 (Secret key: https://dashboard.stripe.com/apikeys — starts with `sk_live_`.)
 
 This prints a `STRIPE_PRICE_ID` (starts with `price_`). Alternatively create a
-product manually in the Dashboard (Product catalog → Add product → $9.99,
+product manually in the Dashboard (Product catalog → Add product → $5,
 recurring yearly) and copy its price ID.
+
+**Changing the price later:** the charged amount comes from the Stripe price
+behind `STRIPE_PRICE_ID`, not from the code — but the UI text (App.tsx,
+StatsModal.tsx, SubscribeModal.tsx) states the price and must be kept in sync.
+To change it: create a new price (re-run the script or use the Dashboard),
+set the new ID in `STRIPE_PRICE_ID`, redeploy, and update the UI text.
+Existing subscribers keep their old price until they cancel.
 
 ### 2. Configure Vercel environment variables
 

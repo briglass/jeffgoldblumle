@@ -52,7 +52,7 @@ export const StatsModal = ({
         onClick={onSubscribeClick}
         className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 underline transition-colors"
       >
-        ✨ Subscribe to go ad-free! ✨
+        ✨ $5 to support and go ad-free for 1 year! ✨
       </button>
       <div className="mt-2">
         <button

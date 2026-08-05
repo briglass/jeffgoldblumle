@@ -99,7 +99,7 @@ export const SubscribeModal = ({
             No ads. No promos. Just you and the raw game.
           </p>
           <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 text-center">
-            $9.99<span className="text-sm font-medium">/year</span>
+            $5<span className="text-sm font-medium">/year</span>
           </p>
           <button
             type="button"
