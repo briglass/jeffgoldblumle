@@ -3,18 +3,19 @@ import { useEffect } from 'react'
 // Adsterra Social Bar, limited to one activation per visit (browser tab
 // session). The script injects its own floating widget and re-shows it after
 // the user closes it, so we contain it from the outside:
-//  - elements it adds at body level are tracked from the moment it loads
-//  - the whole thing is torn down when the user engages with it (click /
-//    focus moving into its iframe) or after 15 seconds, whichever is first
-//  - after teardown, anything its leftover timers try to re-inject is
-//    removed immediately, and a sessionStorage flag stops it from loading
-//    again on later page views this session
+//  - page-level elements that appear after the script loads are tracked
+//  - everything is torn down when the user engages with it (click / focus
+//    moving into its iframe) or after 15 seconds, whichever is first
+//  - after teardown, re-injections are removed on sight (observer + periodic
+//    sweep), and a sessionStorage flag stops the script from loading again
+//    on later page views this session
 const SCRIPT_SRC =
   'https://cameljolly.com/56/01/e5/5601e5bed5d7aecfa194653ca07a15fb.js'
 const SESSION_KEY = 'socialBarDone'
 const ACTIVE_WINDOW_MS = 15000
+const SWEEP_INTERVAL_MS = 1000
 
-// Body-level elements that must never be treated as ad UI: the app itself,
+// Page-level elements that must never be treated as ad UI: the app itself,
 // headlessui modal portals, Google's ad containers, and non-visual tags.
 const isOwnElement = (el: Element): boolean => {
   if (el.id === 'root' || el.closest('#root')) return true
@@ -46,33 +47,63 @@ export const AdsterraSocialBar = () => {
       if (sessionStorage.getItem(SESSION_KEY)) return
     } catch (e) {}
 
-    const tracked: Element[] = []
+    // Anything already on the page before the ad script loads is not its UI
+    const preexisting = new Set<Element>([
+      ...Array.from(document.documentElement.children),
+      ...Array.from(document.body.children),
+    ])
+    const tracked = new Set<Element>()
     let killed = false
+    let sweepInterval: number | undefined
+
+    const isAtPageLevel = (el: Element) =>
+      el.parentElement === document.body ||
+      el.parentElement === document.documentElement
+
+    const handleNewElement = (el: Element) => {
+      if (!isAtPageLevel(el) || preexisting.has(el) || isOwnElement(el)) return
+      if (killed) {
+        el.remove()
+      } else {
+        tracked.add(el)
+      }
+    }
 
     const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
+      mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
-          if (node.nodeType !== 1) return
-          const el = node as Element
-          if (isOwnElement(el)) return
-          if (killed) {
-            el.remove()
-          } else {
-            tracked.push(el)
-          }
+          if (node.nodeType === 1) handleNewElement(node as Element)
         })
-      }
+      })
     })
-    observer.observe(document.body, { childList: true })
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    })
 
     const script = document.createElement('script')
     script.src = SCRIPT_SRC
     script.async = true
     document.body.appendChild(script)
 
-    const isInsideAd = (target: EventTarget | null) =>
-      target instanceof Element &&
-      tracked.some((el) => el === target || el.contains(target))
+    // Backstop for anything the observer misses: drop every page-level
+    // element that wasn't there before the ad script loaded.
+    const sweep = () => {
+      const candidates = [
+        ...Array.from(document.documentElement.children),
+        ...Array.from(document.body.children),
+      ]
+      candidates.forEach((el) => {
+        if (!preexisting.has(el) && !isOwnElement(el)) el.remove()
+      })
+    }
+
+    const isInsideAd = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) return false
+      return Array.from(tracked).some(
+        (el) => el === target || el.contains(target)
+      )
+    }
 
     const kill = () => {
       if (killed) return
@@ -82,11 +113,13 @@ export const AdsterraSocialBar = () => {
       } catch (e) {}
       script.remove()
       tracked.forEach((el) => el.remove())
-      tracked.length = 0
+      tracked.clear()
       window.removeEventListener('blur', onBlur)
       document.removeEventListener('click', onClick, true)
-      // The observer stays on: it now removes anything the ad's leftover
-      // timers try to re-inject for the rest of this page view.
+      // Keep the page clean for the rest of this view: the observer removes
+      // re-injections as they happen, the sweep catches anything it misses.
+      sweep()
+      sweepInterval = window.setInterval(sweep, SWEEP_INTERVAL_MS)
     }
 
     // A click inside the ad's cross-origin iframe moves focus into it and
@@ -105,6 +138,7 @@ export const AdsterraSocialBar = () => {
 
     return () => {
       window.clearTimeout(timer)
+      if (sweepInterval !== undefined) window.clearInterval(sweepInterval)
       window.removeEventListener('blur', onBlur)
       document.removeEventListener('click', onClick, true)
       observer.disconnect()
