@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 
+// Adsterra native banner (currently disabled in App.tsx — code retained)
 export const AdsterraNative = () => {
   const containerId = 'container-2a5e45dd8794e4310d9a930b4928f877'
   const adRef = useRef<HTMLDivElement>(null)

@@ -49,10 +49,15 @@ import { AlertContainer } from './components/alerts/AlertContainer'
 import { Alert } from './components/alerts/Alert'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
+// Google AdSense display ads
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
-import { AdsterraNative } from './components/ads/AdsterraNative'
-import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
+// Adsterra native banner — disabled, code retained
+// import { AdsterraNative } from './components/ads/AdsterraNative'
+// Adsterra social bar — disabled, code retained
+// import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
+// Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
+// Hilltop banner — disabled, code retained
 // import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
@@ -330,8 +335,9 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
+      {/* Google AdSense display ad */}
       {!isSubscriber && <GoogleAdDisplay />}
-      {/* <HilltopBanner /> */}
+      {/* Hilltop banner — disabled, code retained: <HilltopBanner /> */}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
           {isVisible && status === 'success' && (
@@ -416,7 +422,8 @@ function App() {
             </div>
           )}
 
-          {!isSubscriber && <AdsterraNative />}
+          {/* Adsterra native banner — disabled, code retained:
+          {!isSubscriber && <AdsterraNative />} */}
 
           {!isSubscriber && (
             <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
@@ -709,8 +716,10 @@ function App() {
         />
         <AlertContainer />
         <Analytics />
+        {/* Google AdSense display ad */}
         {!isSubscriber && <GoogleAdDisplay />}
-        {!isSubscriber && <AdsterraSocialBar />}
+        {/* Adsterra social bar — disabled, code retained:
+        {!isSubscriber && <AdsterraSocialBar />} */}
       </div>
     </div>
   )

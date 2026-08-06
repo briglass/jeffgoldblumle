@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 
+// Adsterra banner ad (currently unused — code retained)
 export const AdsterraBanner = () => {
   const bannerRef = useRef<HTMLDivElement>(null)
 

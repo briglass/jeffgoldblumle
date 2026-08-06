@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+// Google AdSense display ad (fixed horizontal slot)
 export const GoogleAdDisplay = () => {
   useEffect(() => {
     // Avoid running AdSense on localhost / development to prevent console/runtime errors

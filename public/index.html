@@ -4,6 +4,42 @@
     <meta charset="utf-8" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
 
+    <!-- Ad-free subscribers: skip loading ad scripts entirely.
+         Kept in sync with the localStorage key written by src/lib/subscription.ts -->
+    <script>
+      window.__JGLE_AD_FREE__ = false;
+      try {
+        var __jgleSub = JSON.parse(localStorage.getItem('adFreeSubscription') || 'null');
+        if (__jgleSub && __jgleSub.expiresAt && __jgleSub.expiresAt > Date.now()) {
+          window.__JGLE_AD_FREE__ = true;
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Monetag ad tags (three zones) — skipped for ad-free subscribers -->
+    <script>
+      // Monetag zone 11518081
+      if (!window.__JGLE_AD_FREE__) {
+        var __monetag1 = document.createElement('script');
+        __monetag1.src = 'https://5gvci.com/act/files/tag.min.js?z=11518081';
+        __monetag1.async = true;
+        __monetag1.setAttribute('data-cfasync', 'false');
+        document.head.appendChild(__monetag1);
+      }
+    </script>
+    <script>
+      // Monetag zone 11518086
+      if (!window.__JGLE_AD_FREE__) {
+        (function(s){s.dataset.zone='11518086',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+      }
+    </script>
+    <script>
+      // Monetag zone 11518087 (vignette)
+      if (!window.__JGLE_AD_FREE__) {
+        (function(s){s.dataset.zone='11518087',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+      }
+    </script>
+
     <!-- Anti-Malicious-Overlay Guard -->
     <!--
     <script>
@@ -265,20 +301,8 @@
       <script defer data-domain="%REACT_APP_PLAUSIBLE_DOMAIN%" src="https://plausible.io/js/plausible.js"></script>
     <% } %>
     
-    <!-- Ad-free subscribers: skip loading ad scripts entirely.
-         Kept in sync with the localStorage key written by src/lib/subscription.ts -->
-    <script>
-      window.__JGLE_AD_FREE__ = false;
-      try {
-        var __jgleSub = JSON.parse(localStorage.getItem('adFreeSubscription') || 'null');
-        if (__jgleSub && __jgleSub.expiresAt && __jgleSub.expiresAt > Date.now()) {
-          window.__JGLE_AD_FREE__ = true;
-        }
-      } catch (e) {}
-    </script>
-
     <% if (process.env.NODE_ENV === 'production') { %>
-      <!-- Google AdSense auto-ads -->
+      <!-- Google AdSense auto-ads — skipped for ad-free subscribers -->
       <script>
         if (!window.__JGLE_AD_FREE__) {
           var __jgleAds = document.createElement('script');
@@ -289,6 +313,8 @@
         }
       </script>
     <% } %>
+
+    <!-- Hilltop vignette tag — disabled, code retained
     <script>
     if (!window.__JGLE_AD_FREE__) {
     (function(vhq){
@@ -303,6 +329,7 @@
     })({})
     }
     </script>
+    -->
     
   </head>
   <body>

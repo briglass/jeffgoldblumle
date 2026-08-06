@@ -6,6 +6,42 @@
     <meta name="description" content="Jeff Goldblum's best movies, ranked. From Jurassic Park to The Fly — a guide to the filmography of Hollywood's most magnetic character actor." />
     <meta name="keywords" content="jeff goldblum movies, jeff goldblum filmography, best jeff goldblum films, jurassic park, the fly" />
 
+    <!-- Ad-free subscribers: skip loading ad scripts entirely.
+         Kept in sync with the localStorage key written by src/lib/subscription.ts -->
+    <script>
+      window.__JGLE_AD_FREE__ = false;
+      try {
+        var __jgleSub = JSON.parse(localStorage.getItem('adFreeSubscription') || 'null');
+        if (__jgleSub && __jgleSub.expiresAt && __jgleSub.expiresAt > Date.now()) {
+          window.__JGLE_AD_FREE__ = true;
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Monetag ad tags (three zones) — skipped for ad-free subscribers -->
+    <script>
+      // Monetag zone 11518081
+      if (!window.__JGLE_AD_FREE__) {
+        var __monetag1 = document.createElement('script');
+        __monetag1.src = 'https://5gvci.com/act/files/tag.min.js?z=11518081';
+        __monetag1.async = true;
+        __monetag1.setAttribute('data-cfasync', 'false');
+        document.head.appendChild(__monetag1);
+      }
+    </script>
+    <script>
+      // Monetag zone 11518086
+      if (!window.__JGLE_AD_FREE__) {
+        (function(s){s.dataset.zone='11518086',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+      }
+    </script>
+    <script>
+      // Monetag zone 11518087 (vignette)
+      if (!window.__JGLE_AD_FREE__) {
+        (function(s){s.dataset.zone='11518087',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
+      }
+    </script>
+
     <!-- Anti-Malicious-Overlay Guard -->
     <!--
     <script>
@@ -271,7 +307,7 @@
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425"
      crossorigin="anonymous"></script>
-<!-- horizontal display ad 01 -->
+<!-- Google AdSense: horizontal display ad 01 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9509983147297425"
@@ -473,7 +509,7 @@
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425"
      crossorigin="anonymous"></script>
-<!-- horizontal display ad 01 -->
+<!-- Google AdSense: horizontal display ad 01 -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-9509983147297425"
@@ -484,7 +520,7 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-    <!-- Native banner wrapper: keeps the 4 ad images on one non-wrapping row that shrinks to fit the screen -->
+    <!-- Adsterra native banner (below) — disabled, code retained. Wrapper CSS keeps the 4 images on one row. -->
     <style>
       .native-ad-row {
         width: 100%;
@@ -525,8 +561,10 @@
       }
     </style>
     <div class="native-ad-row">
+    <!-- Adsterra native banner, disabled:
     <script async="async" data-cfasync="false" src="https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js"></script>
 <div id="container-2a5e45dd8794e4310d9a930b4928f877"></div>
+    -->
     </div>
     
   </body>

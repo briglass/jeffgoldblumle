@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+// Google AdSense display ad with a configurable slot
 type GoogleAdProps = {
   slot: string
   className?: string

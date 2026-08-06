@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-// Adsterra Social Bar, limited to one activation per visit (browser tab
-// session). The script injects its own floating widget and re-shows it after
+// Adsterra Social Bar (currently disabled in App.tsx — code retained),
+// limited to one activation per visit (browser tab session). The script injects its own floating widget and re-shows it after
 // the user closes it, so we contain it from the outside:
 //  - page-level elements that appear after the script loads are tracked
 //  - everything is torn down when the user engages with it (click / focus
