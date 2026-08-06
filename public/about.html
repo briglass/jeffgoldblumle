@@ -8,6 +8,7 @@
 
     <!-- Ad-free subscribers: skip loading ad scripts entirely.
          Kept in sync with the localStorage key written by src/lib/subscription.ts -->
+    <style>.jgle-hide-google .adsbygoogle { display: none !important; }</style>
     <script>
       window.__JGLE_AD_FREE__ = false;
       try {
@@ -16,12 +17,26 @@
           window.__JGLE_AD_FREE__ = true;
         }
       } catch (e) {}
+
+      // A/B split, re-rolled on every page load: half of loads serve Monetag
+      // only, the other half serve every other network (Google AdSense, plus
+      // Adsterra/Hilltop if they are ever re-enabled). Never both at once.
+      window.__JGLE_AD_VARIANT__ = Math.random() < 0.5 ? 'monetag' : 'other';
+      window.__JGLE_SHOW_MONETAG__ =
+        !window.__JGLE_AD_FREE__ && window.__JGLE_AD_VARIANT__ === 'monetag';
+      window.__JGLE_SHOW_OTHER_ADS__ =
+        !window.__JGLE_AD_FREE__ && window.__JGLE_AD_VARIANT__ === 'other';
+
+      // Hides the static <ins> ad slots further down when Google isn't serving
+      if (!window.__JGLE_SHOW_OTHER_ADS__) {
+        document.documentElement.className += ' jgle-hide-google';
+      }
     </script>
 
-    <!-- Monetag ad tags (three zones) — skipped for ad-free subscribers -->
+    <!-- Monetag ad tags (three zones) — 'monetag' half of the split only -->
     <script>
       // Monetag zone 11518081
-      if (!window.__JGLE_AD_FREE__) {
+      if (window.__JGLE_SHOW_MONETAG__) {
         var __monetag1 = document.createElement('script');
         __monetag1.src = 'https://5gvci.com/act/files/tag.min.js?z=11518081';
         __monetag1.async = true;
@@ -31,13 +46,13 @@
     </script>
     <script>
       // Monetag zone 11518086
-      if (!window.__JGLE_AD_FREE__) {
+      if (window.__JGLE_SHOW_MONETAG__) {
         (function(s){s.dataset.zone='11518086',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
       }
     </script>
     <script>
       // Monetag zone 11518087 (vignette)
-      if (!window.__JGLE_AD_FREE__) {
+      if (window.__JGLE_SHOW_MONETAG__) {
         (function(s){s.dataset.zone='11518087',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
       }
     </script>
@@ -278,9 +293,20 @@
       body { background-color: #f8fafc; }
       @media (prefers-color-scheme: dark) { body { background-color: #0f172a; } }
     </style>
-    <!-- Google AdSense auto-ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425" crossorigin="anonymous"></script>
+    <!-- Google AdSense auto-ads — 'other' half of the split only -->
     <script>
+      if (window.__JGLE_SHOW_OTHER_ADS__) {
+        var __jgleAutoAds = document.createElement('script');
+        __jgleAutoAds.async = true;
+        __jgleAutoAds.crossOrigin = 'anonymous';
+        __jgleAutoAds.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425';
+        document.head.appendChild(__jgleAutoAds);
+      }
+    </script>
+
+    <!-- Hilltop vignette tag — disabled, code retained ('other' half when re-enabled)
+    <script>
+    if (window.__JGLE_SHOW_OTHER_ADS__) {
     (function(vhq){
     var d = document,
         s = d.createElement('script'),
@@ -291,7 +317,9 @@
     s.referrerPolicy = 'no-referrer-when-downgrade';
     l.parentNode.insertBefore(s, l);
     })({})
+    }
     </script>
+    -->
   </head>
   <body class="min-h-screen text-slate-900 dark:text-slate-100 flex flex-col justify-between">
 
@@ -305,8 +333,16 @@
       </div>
     </header>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425"
-     crossorigin="anonymous"></script>
+<script>
+  // Google AdSense loader — 'other' half of the split only
+  if (window.__JGLE_SHOW_OTHER_ADS__) {
+    var __jgleSlotAds = document.createElement('script');
+    __jgleSlotAds.async = true;
+    __jgleSlotAds.crossOrigin = 'anonymous';
+    __jgleSlotAds.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425';
+    document.head.appendChild(__jgleSlotAds);
+  }
+</script>
 <!-- Google AdSense: horizontal display ad 01 -->
 <ins class="adsbygoogle"
      style="display:block"
@@ -435,8 +471,16 @@
       </div>
     </main>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425"
-     crossorigin="anonymous"></script>
+<script>
+  // Google AdSense loader — 'other' half of the split only
+  if (window.__JGLE_SHOW_OTHER_ADS__) {
+    var __jgleSlotAds = document.createElement('script');
+    __jgleSlotAds.async = true;
+    __jgleSlotAds.crossOrigin = 'anonymous';
+    __jgleSlotAds.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509983147297425';
+    document.head.appendChild(__jgleSlotAds);
+  }
+</script>
 <!-- Google AdSense: horizontal display ad 01 -->
 <ins class="adsbygoogle"
      style="display:block"

@@ -51,6 +51,7 @@ import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 // Google AdSense display ads
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
+import { shouldShowOtherAds } from './lib/adVariant'
 // Adsterra native banner — disabled, code retained
 // import { AdsterraNative } from './components/ads/AdsterraNative'
 // Adsterra social bar — disabled, code retained
@@ -82,6 +83,9 @@ function App() {
   const [isCreatorInfoModalOpen, setIsCreatorInfoModalOpen] = useState(false)
   // 50/50 per page load: BRUNDLE badge or the Trivizzle widget badge
   const [showBrundleBadge] = useState(() => Math.random() < 0.5)
+  // Half of page loads serve Monetag only, half serve the other networks —
+  // the coin flip happens in the page head, before any ad script loads.
+  const [showOtherAds] = useState(shouldShowOtherAds)
   const [isSubscriber, setIsSubscriber] = useState(isSubscriberNow)
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [isGameLost, setIsGameLost] = useState(false)
@@ -335,9 +339,10 @@ function App() {
         setIsStatsModalOpen={setIsStatsModalOpen}
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
-      {/* Google AdSense display ad */}
-      {!isSubscriber && <GoogleAdDisplay />}
-      {/* Hilltop banner — disabled, code retained: <HilltopBanner /> */}
+      {/* Google AdSense display ad — 'other' half of the split only */}
+      {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
+      {/* Hilltop banner — disabled, code retained ('other' half when
+          re-enabled): {showOtherAds && <HilltopBanner />} */}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
           {isVisible && status === 'success' && (
@@ -422,8 +427,8 @@ function App() {
             </div>
           )}
 
-          {/* Adsterra native banner — disabled, code retained:
-          {!isSubscriber && <AdsterraNative />} */}
+          {/* Adsterra native banner — disabled, code retained ('other' half
+              when re-enabled): {showOtherAds && <AdsterraNative />} */}
 
           {!isSubscriber && (
             <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
@@ -716,10 +721,10 @@ function App() {
         />
         <AlertContainer />
         <Analytics />
-        {/* Google AdSense display ad */}
-        {!isSubscriber && <GoogleAdDisplay />}
-        {/* Adsterra social bar — disabled, code retained:
-        {!isSubscriber && <AdsterraSocialBar />} */}
+        {/* Google AdSense display ad — 'other' half of the split only */}
+        {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
+        {/* Adsterra social bar — disabled, code retained ('other' half when
+            re-enabled): {showOtherAds && <AdsterraSocialBar />} */}
       </div>
     </div>
   )
