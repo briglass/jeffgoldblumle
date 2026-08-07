@@ -1,6 +1,7 @@
-// The 50/50 split between "Monetag only" and "all other networks" is decided
+// The split between "Monetag only" and "all other networks" is decided
 // by the inline script in public/index.html before any ad script loads, so the
 // head tags and the React tree always agree on the same coin flip.
+// Monetag is currently set to 0% probability (disabled).
 declare global {
   interface Window {
     __JGLE_AD_VARIANT__?: 'monetag' | 'other'
