@@ -52,10 +52,8 @@ import { Navbar } from './components/navbar/Navbar'
 // Google AdSense display ads
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { shouldShowOtherAds } from './lib/adVariant'
-// Adsterra native banner — disabled, code retained
-// import { AdsterraNative } from './components/ads/AdsterraNative'
-// Adsterra social bar — disabled, code retained
-// import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
+import { AdsterraNative } from './components/ads/AdsterraNative'
+import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
 // Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
 // Hilltop banner — disabled, code retained
@@ -427,8 +425,7 @@ function App() {
             </div>
           )}
 
-          {/* Adsterra native banner — disabled, code retained ('other' half
-              when re-enabled): {showOtherAds && <AdsterraNative />} */}
+          {!isSubscriber && showOtherAds && <AdsterraNative />}
 
           {!isSubscriber && (
             <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
@@ -723,8 +720,7 @@ function App() {
         <Analytics />
         {/* Google AdSense display ad — 'other' half of the split only */}
         {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
-        {/* Adsterra social bar — disabled, code retained ('other' half when
-            re-enabled): {showOtherAds && <AdsterraSocialBar />} */}
+        {!isSubscriber && showOtherAds && <AdsterraSocialBar />}
       </div>
     </div>
   )
