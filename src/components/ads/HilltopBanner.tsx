@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-// Hilltop banner ad (currently disabled — code retained)
+// Hilltop banner ad
 export const HilltopBanner = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 

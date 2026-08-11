@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-// Google AdSense, and Adsterra/Hilltop if they are ever re-enabled.
+// Google AdSense, Adsterra, and Hilltop.
 export const shouldShowOtherAds = (): boolean =>
   window.__JGLE_SHOW_OTHER_ADS__ === true
 

@@ -56,8 +56,8 @@ import { AdsterraNative } from './components/ads/AdsterraNative'
 import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
 // Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
-// Hilltop banner — disabled, code retained
-// import { HilltopBanner } from './components/ads/HilltopBanner'
+// Hilltop banner
+import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -339,8 +339,8 @@ function App() {
       />
       {/* Google AdSense display ad — 'other' half of the split only */}
       {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
-      {/* Hilltop banner — disabled, code retained ('other' half when
-          re-enabled): {showOtherAds && <HilltopBanner />} */}
+      {/* Hilltop banner */}
+      {!isSubscriber && showOtherAds && <HilltopBanner />}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
           {isVisible && status === 'success' && (
