@@ -52,12 +52,8 @@ import { Navbar } from './components/navbar/Navbar'
 // Google AdSense display ads
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { shouldShowOtherAds } from './lib/adVariant'
-import { AdsterraNative } from './components/ads/AdsterraNative'
-import { AdsterraSocialBar } from './components/ads/AdsterraSocialBar'
 // Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
-// Hilltop banner
-import { HilltopBanner } from './components/ads/HilltopBanner'
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -339,8 +335,6 @@ function App() {
       />
       {/* Google AdSense display ad — 'other' half of the split only */}
       {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
-      {/* Hilltop banner */}
-      {!isSubscriber && showOtherAds && <HilltopBanner />}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
           {isVisible && status === 'success' && (
@@ -401,31 +395,33 @@ function App() {
             </div>
           )}
 
-          {!isSubscriber && (
-            <div className="flex justify-center mt-4 mb-4">
-              <a
-                href="https://www.tiktok.com/@jeffgoldblumle/video/7668750442943368479"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center px-3 py-1.5 bg-black hover:bg-zinc-800 text-white text-xs font-bold rounded-md shadow hover:shadow-md transition-all duration-200 border border-zinc-800 dark:border-zinc-700"
+          <div className="flex justify-center mt-4 mb-4 px-2">
+            <a
+              href="https://www.tiktok.com/@jeffgoldblumle/video/7676222549088308511"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative group flex items-center px-4 py-2.5 animate-shimmer text-amber-200 text-xs sm:text-sm font-bold rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all duration-300 border border-amber-400/50 hover:border-amber-300"
+            >
+              <svg
+                className="w-4 h-4 mr-2.5 fill-current text-amber-300 flex-shrink-0 animate-pulse"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  className="w-3.5 h-3.5 mr-1.5 fill-current text-white flex-shrink-0"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.95 1.12 2.27 1.89 3.66 2.18.01 1.25.01 2.5 0 3.75-1.12-.02-2.24-.26-3.27-.73-.83-.37-1.58-.91-2.2-1.58v6.78c.07 1.41-.25 2.85-.98 4.03-.83 1.4-2.14 2.48-3.66 3.02-1.62.62-3.41.65-5.06.08-1.59-.51-3-1.54-3.96-2.94-1.1-1.53-1.55-3.48-1.27-5.35.31-1.88 1.41-3.56 2.99-4.57 1.39-.93 3.08-1.33 4.73-1.13v3.74c-.81-.15-1.66-.02-2.4.34-.73.34-1.32.96-1.62 1.71-.35.83-.32 1.79.1 2.58.41.77 1.16 1.31 2.01 1.48 1.02.21 2.13-.1 2.87-.84.62-.61.94-1.47.92-2.34V0h3.29z" />
-                </svg>
-                <div className="text-left text-[10px] sm:text-xs">
-                  Trying to get Jeff Goldblum to play!
-                  <br />
-                  Check it out on Tik Tok
-                </div>
-              </a>
-            </div>
-          )}
-
-          {!isSubscriber && showOtherAds && <AdsterraNative />}
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.95 1.12 2.27 1.89 3.66 2.18.01 1.25.01 2.5 0 3.75-1.12-.02-2.24-.26-3.27-.73-.83-.37-1.58-.91-2.2-1.58v6.78c.07 1.41-.25 2.85-.98 4.03-.83 1.4-2.14 2.48-3.66 3.02-1.62.62-3.41.65-5.06.08-1.59-.51-3-1.54-3.96-2.94-1.1-1.53-1.55-3.48-1.27-5.35.31-1.88 1.41-3.56 2.99-4.57 1.39-.93 3.08-1.33 4.73-1.13v3.74c-.81-.15-1.66-.02-2.4.34-.73.34-1.32.96-1.62 1.71-.35.83-.32 1.79.1 2.58.41.77 1.16 1.31 2.01 1.48 1.02.21 2.13-.1 2.87-.84.62-.61.94-1.47.92-2.34V0h3.29z" />
+              </svg>
+              <div className="text-left leading-tight">
+                <span className="inline-block text-amber-300 font-extrabold mr-1">
+                  🏆 $1,000 REWARD:
+                </span>
+                <span>
+                  First person to record Jeff Goldblum playing Jeffgoldblumle!
+                </span>
+                <span className="block text-[10px] text-amber-200/80 font-normal mt-0.5 underline group-hover:text-amber-100">
+                  Tap to watch TikTok video for details
+                </span>
+              </div>
+            </a>
+          </div>
 
           {!isSubscriber && (
             <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
@@ -720,7 +716,6 @@ function App() {
         <Analytics />
         {/* Google AdSense display ad — 'other' half of the split only */}
         {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
-        {!isSubscriber && showOtherAds && <AdsterraSocialBar />}
       </div>
     </div>
   )

@@ -1,33 +1,7 @@
-import { useEffect } from 'react'
-
-// Adsterra Social Bar (currently disabled in App.tsx — code retained),
-// limited to one activation per visit (browser tab session). The script injects its own floating widget and re-shows it after
-// the user closes it, so we contain it from the outside:
-//  - page-level elements that appear after the script loads are tracked
-//  - everything is torn down when the user engages with it (click / focus
-//    moving into its iframe) or after 15 seconds, whichever is first
-//  - after teardown, re-injections are removed on sight (observer + periodic
-//    sweep), and a sessionStorage flag stops the script from loading again
-//    on later page views this session
-const SCRIPT_SRC =
-  'https://cameljolly.com/56/01/e5/5601e5bed5d7aecfa194653ca07a15fb.js'
-const SESSION_KEY = 'socialBarDone'
-const ACTIVE_WINDOW_MS = 15000
-const SWEEP_INTERVAL_MS = 1000
-
-// Page-level elements that must never be treated as ad UI: the app itself,
-// headlessui modal portals, Google's ad containers, and non-visual tags.
-const isOwnElement = (el: Element): boolean => {
-  if (el.id === 'root' || el.closest('#root')) return true
-  const idAndClass = `${el.id} ${el.getAttribute('class') || ''}`
-  if (idAndClass.includes('headlessui')) return true
-  if (idAndClass.includes('google') || idAndClass.includes('adsbygoogle')) {
-    return true
-  }
-  const tag = el.tagName
-  return (
-    tag === 'SCRIPT' ||
-    tag === 'STYLE' ||
+// Adsterra Social Bar (Disabled to prevent popovers)
+export const AdsterraSocialBar = () => {
+  return null
+}
     tag === 'LINK' ||
     tag === 'META' ||
     tag === 'NOSCRIPT'

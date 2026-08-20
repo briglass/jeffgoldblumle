@@ -17,7 +17,7 @@
 
       // A/B split, re-rolled on every page load: Monetag set to 0% probability
       // (disabled), serving all other networks (Google AdSense, plus
-      // Adsterra/Hilltop if they are ever re-enabled).
+      // Adsterra if ever re-enabled).
       // Decided here, before any ad script loads, so the whole page agrees.
       window.__JGLE_AD_VARIANT__ = Math.random() < 0 ? 'monetag' : 'other';
       window.__JGLE_SHOW_MONETAG__ =
@@ -26,35 +26,19 @@
         !window.__JGLE_AD_FREE__ && window.__JGLE_AD_VARIANT__ === 'other';
     </script>
 
-    <!-- Monetag ad tags (three zones) — 'monetag' half of the split only -->
-    <script>
-      // Monetag zone 11518081
-      if (window.__JGLE_SHOW_MONETAG__) {
-        var __monetag1 = document.createElement('script');
-        __monetag1.src = 'https://5gvci.com/act/files/tag.min.js?z=11518081';
-        __monetag1.async = true;
-        __monetag1.setAttribute('data-cfasync', 'false');
-        document.head.appendChild(__monetag1);
-      }
-    </script>
-    <script>
-      // Monetag zone 11518086
-      if (window.__JGLE_SHOW_MONETAG__) {
-        (function(s){s.dataset.zone='11518086',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
-      }
-    </script>
-    <script>
-      // Monetag zone 11518087 (vignette)
-      if (window.__JGLE_SHOW_MONETAG__) {
-        (function(s){s.dataset.zone='11518087',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))
-      }
-    </script>
-
-    <!-- Anti-Malicious-Overlay Guard -->
-    <!--
+    <!-- Anti-Malicious-Overlay & Popunder Blocker Guard -->
     <script>
       (function () {
         'use strict';
+
+        // Unregister any legacy ad network service workers
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (var i = 0; i < registrations.length; i++) {
+              registrations[i].unregister();
+            }
+          }).catch(function () {});
+        }
 
         const WHITELIST_IDS = new Set([
           'root',
@@ -211,7 +195,7 @@
         window.addEventListener('load', periodicScan, { once: true });
         setInterval(periodicScan, 1000);
 
-        /* Block popunder windows and script-driven cross-origin redirects outside user gestures
+        /* Block popunder windows and script-driven cross-origin redirects outside user gestures */
         let _gestureActive = false;
         document.addEventListener('click', function () {
           _gestureActive = true;
@@ -269,10 +253,8 @@
             _nativeReplace.call(this, url);
           };
         } catch (e) {}
-        */
       })();
     </script>
-    -->
 
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -323,22 +305,6 @@
         }
       </script>
     <% } %>
-
-    <!-- Hilltop vignette tag -->
-    <script>
-    if (window.__JGLE_SHOW_OTHER_ADS__) {
-    (function(vhq){
-    var d = document,
-        s = d.createElement('script'),
-        l = d.scripts[d.scripts.length - 1];
-    s.settings = vhq || {};
-    s.src = "\/\/shameful-farm.com\/bpXIVds.dzGulu0rYjWPc_\/-eDmk9IuoZwUhlAkOPLTMc\/xFMhj\/AT4\/MgzrcatwNVz\/EZytMlDCgP0jMRQd";
-    s.async = true;
-    s.referrerPolicy = 'no-referrer-when-downgrade';
-    l.parentNode.insertBefore(s, l);
-    })({})
-    }
-    </script>
     
   </head>
   <body>
