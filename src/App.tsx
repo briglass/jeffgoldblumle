@@ -52,6 +52,7 @@ import { Navbar } from './components/navbar/Navbar'
 // Google AdSense display ads
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { shouldShowOtherAds } from './lib/adVariant'
+import { AdsterraNative } from './components/ads/AdsterraNative'
 // Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
 
@@ -422,6 +423,8 @@ function App() {
               </div>
             </a>
           </div>
+
+          {!isSubscriber && showOtherAds && <AdsterraNative />}
 
           {!isSubscriber && (
             <div className="pt-4 pb-3 flex flex-col items-center justify-center space-y-3">
