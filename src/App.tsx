@@ -415,7 +415,8 @@ function App() {
                   🏆 $1,000 REWARD:
                 </span>
                 <span>
-                  First person to record Jeff Goldblum playing Jeffgoldblumle!
+                  First person to provide us a video of Jeff Goldblum playing
+                  Jeffgoldlumle!
                 </span>
                 <span className="block text-[10px] text-amber-200/80 font-normal mt-0.5 underline group-hover:text-amber-100">
                   Tap to watch TikTok video for details
