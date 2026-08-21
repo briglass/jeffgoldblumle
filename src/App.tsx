@@ -53,6 +53,7 @@ import { Navbar } from './components/navbar/Navbar'
 import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { shouldShowOtherAds } from './lib/adVariant'
 import { AdsterraNative } from './components/ads/AdsterraNative'
+import { GutterwireBanner } from './components/ads/GutterwireBanner'
 // Trivizzle partner badge widget
 import { TrivizzleBadge } from './components/ads/TrivizzleBadge'
 
@@ -371,6 +372,8 @@ function App() {
             guesses={guesses}
             isRevealing={isRevealing}
           />
+
+          {!isSubscriber && <GutterwireBanner />}
 
           {!isSubscriber && (
             <div className="flex justify-center mt-3">
