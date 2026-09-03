@@ -16,6 +16,8 @@ export const GoogleAd = ({
   format = 'auto',
   responsive = 'true',
 }: GoogleAdProps) => {
+  return null
+  /*
   useEffect(() => {
     try {
       // @ts-ignore
@@ -41,4 +43,5 @@ export const GoogleAd = ({
       />
     </div>
   )
+  */
 }

@@ -336,7 +336,7 @@ function App() {
         setIsSettingsModalOpen={setIsSettingsModalOpen}
       />
       {/* Google AdSense display ad — 'other' half of the split only */}
-      {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
+      {/* {!isSubscriber && showOtherAds && <GoogleAdDisplay />} */}
       <div className="pt-0 px-1 pb-8 md:max-w-7xl w-full mx-auto sm:px-6 lg:px-8 flex flex-col grow">
         <div className="grow flex flex-col justify-start pt-1">
           {isVisible && status === 'success' && (
@@ -722,7 +722,7 @@ function App() {
         <AlertContainer />
         <Analytics />
         {/* Google AdSense display ad — 'other' half of the split only */}
-        {!isSubscriber && showOtherAds && <GoogleAdDisplay />}
+        {/* {!isSubscriber && showOtherAds && <GoogleAdDisplay />} */}
       </div>
     </div>
   )
