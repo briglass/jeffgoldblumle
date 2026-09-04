@@ -1,9 +1,7 @@
-// import { useEffect } from 'react'
+import { useEffect } from 'react'
 
 // Google AdSense display ad (fixed horizontal slot)
 export const GoogleAdDisplay = () => {
-  return null
-  /*
   useEffect(() => {
     // Avoid running AdSense on localhost / development to prevent console/runtime errors
     if (
@@ -24,7 +22,7 @@ export const GoogleAdDisplay = () => {
 
   return (
     <div className="w-full overflow-hidden flex justify-center items-center my-2">
-      <!-- horizontal display ad 01 -->
+      {/* horizontal display ad 01 */}
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
@@ -35,5 +33,4 @@ export const GoogleAdDisplay = () => {
       />
     </div>
   )
-  */
 }
