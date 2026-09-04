@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 // Google AdSense display ad with a configurable slot
 type GoogleAdProps = {
@@ -9,6 +9,7 @@ type GoogleAdProps = {
   responsive?: 'true' | 'false'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const GoogleAd = ({
   slot,
   className,

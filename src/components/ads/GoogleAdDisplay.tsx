@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 // Google AdSense display ad (fixed horizontal slot)
 export const GoogleAdDisplay = () => {

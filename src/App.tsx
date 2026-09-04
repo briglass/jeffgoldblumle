@@ -50,7 +50,7 @@ import { Alert } from './components/alerts/Alert'
 import { useAlert } from './context/AlertContext'
 import { Navbar } from './components/navbar/Navbar'
 // Google AdSense display ads
-import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
+// import { GoogleAdDisplay } from './components/ads/GoogleAdDisplay'
 import { shouldShowOtherAds } from './lib/adVariant'
 import { AdsterraNative } from './components/ads/AdsterraNative'
 import { GutterwireBanner } from './components/ads/GutterwireBanner'
