@@ -23,7 +23,7 @@ export const AdsterraNative = () => {
     script.async = true
     script.setAttribute('data-cfasync', 'false')
     script.src =
-      'https://cameljolly.com/2a5e45dd8794e4310d9a930b4928f877/invoke.js'
+      'https://bauval.org/21/2a5e45dd8794e4310d9a930b4928f877'
 
     adRef.current.appendChild(script)
 
